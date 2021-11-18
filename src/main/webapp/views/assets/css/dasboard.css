@@ -1,0 +1,53 @@
+.menu {
+    display: -ms-flexbox;
+    display: none;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.menu li {
+    padding-left: 20%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+.menu>li {
+    position: relative;
+    display: block;
+}
+
+.menu li a {
+    color: #e0dfdf;
+}
+
+.menu li a:hover {
+    color: #ffffff;
+}
+
+.menu li:hover {
+    background: orange;
+    color: #e0dfdf;
+}
+
+.dropdown-menu a:hover {
+    color: floralwhite;
+    background: dodgerblue;
+}
+.table thead th {
+    vertical-align: middle!important;
+}
+.table td, .table th {
+    font-size: 80%;
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+#datatable {
+    display: none;
+}
+#useraccount:hover{
+
+}
