@@ -1,7 +1,7 @@
 package com.sanvui.service;
 
-import com.sanvui.dao.Imp.BaseDaoImp;
-import com.sanvui.entity.FooterDetail;
+import com.sanvui.model.dao.Imp.BaseDaoImp;
+import com.sanvui.model.entity.FooterDetail;
 
 import java.util.List;
 

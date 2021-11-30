@@ -1,0 +1,109 @@
+<!--<%&#45;&#45;
+  Created by IntelliJ IDEA.
+  User: san vui
+  Date: 11/11/2021
+  Time: 12:58 AM
+  To change this template use File | Settings | File Templates.
+&#45;&#45;%>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>My Store - Home</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+        <!--Home css -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/home.css">
+
+    </head>
+    <body>
+        <!--header -->
+        <th:block th:insert="common/_header"/>
+
+        <!--end header-->
+
+        <div class="header_main">
+            <div>
+                <ul class="main-menu">
+                    <li>
+                        <i></i>
+                        <a href="#">Điện thoại</a>
+                    </li>
+                    <li>
+                        <i></i>
+                        <a href="#">Điện thoại</a>
+                    </li>
+                    <li>
+                        <i></i>
+                        <a href="#">Điện thoại</a>
+                    </li>
+                    <li>
+                        <i></i>
+                        <a href="#">Điện thoại</a>
+                    </li>
+                    <li>
+                        <i></i>
+                        <a href="#">Điện thoại</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--start container-->
+        <div class="content">
+
+            <div class="container">
+                <div class="owl-carousel owl-1">
+                    <div><img src="/assets/images/products/poster.png" alt="Image" class="img-fluid"></div>
+                    <div><img src="/assets/images/products/poster.png" alt="Image" class="img-fluid"></div>
+                    <div><img src="/assets/images/products/poster.png" alt="Image" class="img-fluid"></div>
+                    <div><img src="/assets/images/products/poster.png" alt="Image" class="img-fluid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--end container-->
+
+
+        <!--    start section product -->
+        <section>
+            <div class="container-product">
+                <div class="header">
+                    <h2>SẢN PHẨM MỚI</h2>
+                </div>
+                <div class="lts-products">
+                </div>
+            </div>
+        </section>
+        <!--    end section product -->
+
+        <!--    start footer -->
+        <th:block th:insert="common/_footer"/>
+
+        <!--    end footer -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/owl.carousel.min.js"></script>
+        <script src="/assets/js/main.js"></script>
+        <!-- Custom Theme Scripts -->
+        <script src="/assets/js/home.js"></script>
+    </body>
+</html>

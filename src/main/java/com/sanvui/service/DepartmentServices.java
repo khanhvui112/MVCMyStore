@@ -1,6 +1,6 @@
 package com.sanvui.service;
 
-import com.sanvui.entity.Department;
+import com.sanvui.model.entity.Department;
 
 import java.util.List;
 

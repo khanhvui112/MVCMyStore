@@ -1,8 +1,12 @@
 package com.sanvui.convert;
 
 import com.sanvui.dto.EmployeeDTO;
-import com.sanvui.entity.Employee;
+import com.sanvui.dto.RoleDTO;
+import com.sanvui.model.entity.Employee;
+import com.sanvui.model.entity.EmployeeRole;
+import com.sanvui.model.entity.Payment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,8 +32,13 @@ public class EmployeeConvert {
         if (entity.getDepartment() != null) {
             dto.setDepName(entity.getDepartment().getDepName());
         }
-        if (entity.getRole() != null) {
-            dto.setRoleName(entity.getRole().getRoleName());
+        if (!entity.getEmployeeRoles().isEmpty()) {
+            List<String> roles = new ArrayList<>();
+            for(EmployeeRole e : entity.getEmployeeRoles()){
+                roles.add(e.getRole().getRoleName());
+            }
+
+            dto.setRoles(roles);
         }
         dto.setFirstName(entity.getFirstName());
         dto.setLastName(entity.getLastName());

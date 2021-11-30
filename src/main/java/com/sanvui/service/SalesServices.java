@@ -1,6 +1,6 @@
 package com.sanvui.service;
 
-import com.sanvui.entity.Sales;
+import com.sanvui.model.entity.Sales;
 
 import java.util.List;
 

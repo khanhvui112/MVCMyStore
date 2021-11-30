@@ -1,28 +1,35 @@
 package com.sanvui.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.sanvui.model.entity.EmployeeRole;
+import lombok.*;
+
+import java.util.List;
 
 /**
  * @author: VuiSK
  * @created: 11/11/2021-9:40 PM
  * @mailto: sanvankhanh@gmail.com
  */
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class LoginDTO {
     private String userName;
+    private String email;
     private String password;
-    private String role;
+    private List<EmployeeRole> employeeRoles;
     private String avatar;
 
     @Override
     public String toString() {
         return "LoginDTO{" +
-                ", userName='" + userName + '\'' +
+                "userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
+                ", role='" + employeeRoles + '\'' +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }

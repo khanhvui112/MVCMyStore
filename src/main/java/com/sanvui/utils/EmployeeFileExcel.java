@@ -1,6 +1,6 @@
 package com.sanvui.utils;
 
-import com.sanvui.entity.Employee;
+import com.sanvui.model.entity.Employee;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -47,7 +47,7 @@ public class EmployeeFileExcel {
                     employee.setAddress(r.getCell(4).getStringCellValue());
                     employee.setUserName(r.getCell(5).getStringCellValue());
                     employee.setPassword(r.getCell(6).getStringCellValue());
-                    employee.setDep_Id((int) r.getCell(7).getNumericCellValue());
+                    employee.setDep_id((int) r.getCell(7).getNumericCellValue());
                     employeeList.add(employee);
                 }
                 check = 1;

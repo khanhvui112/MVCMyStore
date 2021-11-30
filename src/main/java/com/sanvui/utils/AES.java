@@ -2,9 +2,13 @@ package com.sanvui.utils;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Properties;
 
 /**
  * @author: VuiSK
@@ -80,5 +84,38 @@ public class AES {
             System.out.println("Error while decrypting: " + e.toString());
         }
         return null;
+    }
+
+    public static String getSecret() {
+
+        Properties properties = new Properties();
+        InputStream inputStream = null;
+
+        String secretKey = null;
+
+        try {
+
+            inputStream = new FileInputStream("src/main/resources/secretKey.properties");
+
+//            load properties from file
+            properties.load(inputStream);
+
+//            get properties by name
+            secretKey = properties.getProperty("key");
+
+        } catch (IOException e) {
+            System.out.println("Get secretKey fail!");
+            return null;
+        } finally {
+            // close objects
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return secretKey;
     }
 }

@@ -1,6 +1,6 @@
 package com.sanvui.convert;
 
-import com.sanvui.entity.Footer;
+import com.sanvui.model.entity.Footer;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class FooterConvert {
         dto.setFooterName(entity.getFooterName());
         dto.setStatus(entity.getStatus());
         dto.setCreate_Date(entity.getCreate_Date());
-        if(entity.getFooterDetails() != null){
+        if(!entity.getFooterDetails().isEmpty()){
             dto.setFooterDetails(entity.getFooterDetails());
         }
         return dto;

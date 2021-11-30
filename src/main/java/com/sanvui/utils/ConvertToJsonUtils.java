@@ -3,7 +3,7 @@ package com.sanvui.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.sanvui.dao.JsonDao;
+import com.sanvui.model.dao.JsonDao;
 
 import java.util.List;
 
@@ -31,4 +31,5 @@ public class ConvertToJsonUtils<T> implements JsonDao<T> {
         String arrayToJson = objectMapper.writeValueAsString(ts);
         return arrayToJson;
     }
+
 }

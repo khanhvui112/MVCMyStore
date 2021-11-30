@@ -1,7 +1,9 @@
 package com.sanvui.service;
 
-import com.sanvui.dao.Imp.BaseDaoImp;
-import com.sanvui.entity.Footer;
+import com.sanvui.model.entity.Footer;
+import com.sanvui.repository.FooterRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,15 +12,13 @@ import java.util.List;
  * @created: 17/11/2021-2:27 PM
  * @mailto: sanvankhanh@gmail.com
  */
-
+@Service
 public class FooterService {
-    public static boolean inserts(List<Footer> footers){
-        BaseDaoImp imp = new BaseDaoImp(Footer.class);
-        return imp.insert(footers);
-    }
 
-    public static List<Footer> findAll(){
-        BaseDaoImp imp = new BaseDaoImp(Footer.class);
-        return imp.findAll();
+    @Autowired
+    private FooterRepository repository;
+
+    public List<Footer> findAll(){
+        return  (List<Footer>)repository.findAll();
     }
 }

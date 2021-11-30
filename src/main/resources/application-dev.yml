@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;database=MYSTOREMVC
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: sa
+    password: 23102000
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8888

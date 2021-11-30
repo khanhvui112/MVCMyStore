@@ -1,7 +1,7 @@
 package com.sanvui.convert;
 
 import com.sanvui.dto.MenuDTO;
-import com.sanvui.entity.Menu;
+import com.sanvui.model.entity.Menu;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class MenuConvert {
         dto.setMenuName(entity.getMeName());
         dto.setMenuLink(entity.getMeLink());
         dto.setCreateDate(entity.getCreateDate());
-        dto.setEmpId(entity.getEmp_Id());
+        dto.setEmpId(entity.getEmp_id());
         dto.setStatus(entity.getStatus());
         return dto;
     }

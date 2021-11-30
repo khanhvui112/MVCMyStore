@@ -1,9 +1,11 @@
 package com.sanvui.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sanvui.model.entity.EmployeeRole;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author: VuiSK
@@ -23,7 +25,8 @@ public class EmployeeDTO {
     private String email;
     private String phone;
     private String depName;
-    private String roleName;
+
+    private List<String> roles;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;

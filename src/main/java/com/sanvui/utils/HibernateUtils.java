@@ -1,7 +1,7 @@
 package com.sanvui.utils;
 
 import com.sanvui.dto.SalaryDTO;
-import com.sanvui.entity.*;
+import com.sanvui.model.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

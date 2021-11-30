@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: local
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+#JWT:
+jwt.secret: 23102000
+jwt.expires: 5*60*60;

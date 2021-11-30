@@ -1,7 +1,7 @@
 package com.sanvui.service;
 
-import com.sanvui.dao.Imp.BaseDaoImp;
-import com.sanvui.dao.ServicesDao;
+import com.sanvui.model.dao.Imp.BaseDaoImp;
+import com.sanvui.model.dao.ServicesDao;
 import com.sanvui.utils.ValidatorBean;
 import com.sanvui.utils.ValidatorUtils;
 
