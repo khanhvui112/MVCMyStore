@@ -1,7 +1,12 @@
 package com.sanvui.service;
 
 import com.sanvui.model.entity.Color;
+import com.sanvui.repository.ColorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -9,16 +14,18 @@ import java.util.List;
  * @created: 06/11/2021-9:00 AM
  * @mailto: sanvankhanh@gmail.com
  */
-
+@Service
+@Transactional(rollbackFor = SQLException.class)
 public class ColorServices {
-    private static  final  BaseServices services = new BaseServices(Color.class);
 
+    @Autowired
+    private ColorRepository repository;
     /*
     * get all data in table Color
     * return List Color
     * */
     public List<Color> findAll(){
-        return services.findAll();
+        return repository.findAll();
     }
 
     /*
@@ -28,7 +35,7 @@ public class ColorServices {
     * put data to insert
     * */
     public boolean insert(List<Color> colorList){
-        return services.insert(colorList);
+        return !(repository.saveAll(colorList).isEmpty());
     }
 
     /*
@@ -38,6 +45,6 @@ public class ColorServices {
      * put data to insert
      * */
     public boolean update(List<Color> colorList){
-        return services.update(colorList);
+        return !(repository.saveAll(colorList).isEmpty());
     }
 }

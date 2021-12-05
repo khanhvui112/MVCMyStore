@@ -1,6 +1,6 @@
 package com.sanvui.utils;
 
-import com.sanvui.dto.SalaryDTO;
+import com.sanvui.model.dto.SalaryDTO;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

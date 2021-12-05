@@ -1,6 +1,6 @@
 package com.sanvui.model.dao;
 
-import com.sanvui.dto.LoginDTO;
+import com.sanvui.model.dto.LoginDTO;
 
 /**
  * @author: VuiSK

@@ -1,6 +1,7 @@
 package com.sanvui.repository;
 
 import com.sanvui.model.entity.Menu;
+import com.sanvui.repository.custom.CustomizeMenuRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
  * @mailto: sanvankhanh@gmail.com
  */
 @Repository
-public interface MenuRepository extends JpaRepository<Menu, Integer> {
+public interface MenuRepository extends JpaRepository<Menu, Integer>
+        , CustomizeMenuRepository {
 
 }

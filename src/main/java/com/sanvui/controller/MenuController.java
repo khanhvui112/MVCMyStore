@@ -1,12 +1,15 @@
 package com.sanvui.controller;
 
 import com.sanvui.convert.MenuConvert;
-import com.sanvui.dto.MenuDTO;
+import com.sanvui.model.dto.MenuDTO;
+import com.sanvui.model.dto.resp.MenuRespDto;
 import com.sanvui.service.MenuServices;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServlet;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,19 +19,17 @@ import java.util.stream.Collectors;
  * @mailto: sanvankhanh@gmail.com
  */
 @RestController
+@RequestMapping("/api/v1/menu")
 public class MenuController extends HttpServlet {
 
-    private final MenuServices services;
+    private final MenuServices menuServices;
 
     public MenuController(MenuServices services) {
-        this.services = services;
+        this.menuServices = services;
     }
 
-    @GetMapping("/menu-all")
-    public List<MenuDTO> menu(){
-        List<MenuDTO> menus = services.findAll().stream().map(
-                m-> MenuConvert.getInstance().toDTO(m)).collect(Collectors.toList());
-        menus = MenuConvert.removeByStatus(menus,0);
-        return menus;
+    @GetMapping("/find-all")
+    public List<MenuRespDto> menuCustom() throws IOException {
+        return menuServices.findAllByCustom();
     }
 }

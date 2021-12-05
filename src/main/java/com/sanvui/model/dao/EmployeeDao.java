@@ -1,6 +1,6 @@
 package com.sanvui.model.dao;
 
-import com.sanvui.dto.SalaryDTO;
+import com.sanvui.model.dto.SalaryDTO;
 import com.sanvui.model.entity.Employee;
 
 import java.util.List;

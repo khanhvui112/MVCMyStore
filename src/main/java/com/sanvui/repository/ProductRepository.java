@@ -1,6 +1,7 @@
 package com.sanvui.repository;
 
 import com.sanvui.model.entity.Products;
+import com.sanvui.repository.custom.CustomizeProductRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,6 @@ import org.springframework.stereotype.Repository;
  * @mailto: sanvankhanh@gmail.com
  */
 @Repository
-public interface ProductRepository extends JpaRepository<Products, Integer> {
+public interface ProductRepository extends JpaRepository<Products, Integer>
+        , CustomizeProductRepository {
 }

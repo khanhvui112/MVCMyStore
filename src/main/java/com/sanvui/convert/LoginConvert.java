@@ -1,8 +1,7 @@
 package com.sanvui.convert;
 
-import com.sanvui.dto.LoginDTO;
+import com.sanvui.model.dto.LoginDTO;
 import com.sanvui.model.entity.Employee;
-import com.sanvui.model.entity.EmployeeRole;
 
 /**
  * @author: VuiSK

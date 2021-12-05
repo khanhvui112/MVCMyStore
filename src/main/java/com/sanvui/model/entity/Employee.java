@@ -96,6 +96,15 @@ public class Employee {
     @Pattern(regexp = "^(female|male|Nam|Nữ)$", message = "Please check gender again.")
     private String gender;
 
+    @Column(columnDefinition = " bit default 0")
+    private boolean active = false;
+
+    @Column(name = "token_active")
+    private String tokenActive;
+
+    @Column(columnDefinition = "bit default 0")
+    private boolean accountNonLocked = false;
+
     //    map to avatar
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL
             , fetch = FetchType.LAZY, orphanRemoval = true)

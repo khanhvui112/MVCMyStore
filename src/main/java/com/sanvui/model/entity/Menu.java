@@ -1,6 +1,8 @@
 package com.sanvui.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.sanvui.model.dto.CategoryDto;
+import com.sanvui.model.dto.resp.MenuRespDto;
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
 
@@ -13,6 +15,20 @@ import java.time.LocalDateTime;
  * @created: 07/11/2021-11:43 AM
  * @mailto: sanvankhanh@gmail.com
  */
+@SqlResultSetMapping(
+        name = "menuCustomResultMapping",
+        classes = {
+                @ConstructorResult(
+                        targetClass = MenuRespDto.class,
+                        columns = {
+                                @ColumnResult(name = "me_id", type = Integer.class),
+                                @ColumnResult(name = "me_name", type = String.class),
+                                @ColumnResult(name = "me_link", type = String.class),
+                                @ColumnResult(name = "status", type = Integer.class),
+                        }
+                )
+        }
+)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
 @Entity
 @ToString

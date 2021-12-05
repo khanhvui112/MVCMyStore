@@ -9,6 +9,40 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  data:
+    cassandra:
+      request:
+        throttler:
+          type:
 
 server:
   port: 9999
+
+app:
+  file:
+    location: D:/Spring MVC/SpringMVCMyStore2/assest/
+    product: ${app.file.location}/product
+    url-prefix: http://localhost:${server.port}/file
+  url-local:
+    url:  http://localhost:${server.port}
+
+  page:
+    size: 3
+
+  mail:
+    sender-name: MyStore_Server
+    sender-email: sankhanh12@gmail.com
+    password: "0985574580"
+
+  key:
+    encrypt: Vui@23102000
+
+  token:
+    time: 5
+#
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        type : trace
+

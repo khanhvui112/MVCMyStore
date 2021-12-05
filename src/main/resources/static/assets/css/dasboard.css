@@ -51,3 +51,10 @@
 #useraccount:hover{
 
 }
+
+#product-padding {
+    padding: 0 15%;
+}
+#product-padding>form{
+    width: 100%;
+}

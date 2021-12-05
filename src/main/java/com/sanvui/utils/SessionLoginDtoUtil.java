@@ -1,9 +1,6 @@
 package com.sanvui.utils;
 
-import com.sanvui.dto.LoginDTO;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
+import com.sanvui.model.dto.LoginDTO;
 
 /**
  * @author: VuiSK

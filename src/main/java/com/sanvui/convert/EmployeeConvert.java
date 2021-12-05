@@ -1,10 +1,8 @@
 package com.sanvui.convert;
 
-import com.sanvui.dto.EmployeeDTO;
-import com.sanvui.dto.RoleDTO;
+import com.sanvui.model.dto.EmployeeDto;
 import com.sanvui.model.entity.Employee;
 import com.sanvui.model.entity.EmployeeRole;
-import com.sanvui.model.entity.Payment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +24,8 @@ public class EmployeeConvert {
         return instance;
     }
 
-    public EmployeeDTO toDTO(Employee entity) {
-        EmployeeDTO dto = new EmployeeDTO();
+    public EmployeeDto toDTO(Employee entity) {
+        EmployeeDto dto = new EmployeeDto();
         dto.setEmpId(entity.getEmpId());
         if (entity.getDepartment() != null) {
             dto.setDepName(entity.getDepartment().getDepName());
@@ -51,9 +49,9 @@ public class EmployeeConvert {
         return dto;
     }
 
-    public static List<EmployeeDTO> removeUser(List<EmployeeDTO> dtos) {
+    public static List<EmployeeDto> removeUser(List<EmployeeDto> dtos) {
         for (int i = 0; i < dtos.size(); i++) {
-            EmployeeDTO dto = dtos.get(i);
+            EmployeeDto dto = dtos.get(i);
             if (dto.getDepName() == null
                     || dto.getDepName().equalsIgnoreCase("Người dùng")
                     || dto.getDepName().equalsIgnoreCase("user")) {

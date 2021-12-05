@@ -1,10 +1,12 @@
 package com.sanvui.service;
 
+import com.sanvui.model.dto.resp.MenuRespDto;
 import com.sanvui.model.entity.Menu;
 import com.sanvui.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -20,5 +22,9 @@ public class MenuServices {
 
     public List<Menu> findAll(){
         return (List<Menu>) menuRepository.findAll();
+    }
+
+    public List<MenuRespDto> findAllByCustom() throws IOException {
+        return menuRepository.getAllMenuResp();
     }
 }

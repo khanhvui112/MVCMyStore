@@ -2,13 +2,18 @@ package com.sanvui.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sanvui.constant.enums.StatusEnum;
+import com.sanvui.model.dto.resp.CategoryRespDto;
+import com.sanvui.model.dto.resp.ProductRespDto;
 import lombok.*;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.TermVector;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -19,6 +24,28 @@ import java.util.List;
  * @created: 06/11/2021-2:53 PM
  * @mailto: sanvankhanh@gmail.com
  */
+@SqlResultSetMapping(
+        name = "productCustomResultMapping",
+        classes = {
+                @ConstructorResult(
+                        targetClass = ProductRespDto.class,
+                        columns = {
+                                @ColumnResult(name = "product_id", type = Integer.class),
+                                @ColumnResult(name = "product_name", type = String.class),
+                                @ColumnResult(name = "create_date", type = LocalDate.class),
+                                @ColumnResult(name = "title", type = String.class),
+                                @ColumnResult(name = "description", type = String.class),
+                                @ColumnResult(name = "ca_id", type = Integer.class),
+                                @ColumnResult(name = "ma_id", type = Integer.class),
+                                @ColumnResult(name = "sale_code", type = String.class),
+                                @ColumnResult(name = "color_id", type = Integer.class),
+                                @ColumnResult(name = "product_detail_id", type = Integer.class),
+                                @ColumnResult(name = "image_link", type = String.class),
+                                @ColumnResult(name = "price", type = String.class),
+                        }
+                )
+        }
+)
 @ToString
 @Indexed
 @Getter
@@ -58,11 +85,11 @@ public class Products {
 
 
     @Column(name = "ca_id", nullable = false)
-    private int ca_id;
+    private Integer ca_id;
 
 
     @Column(name = "ma_id", nullable = false)
-    private int ma_id;
+    private Integer ma_id;
 
 
     @Column(name = "sale_code")
@@ -71,12 +98,13 @@ public class Products {
 
     @NotNull(message = "{range.null}")
     @Column(name = "color_id", nullable = false)
-    private int color_id;
+    private Integer color_id;
 
     @Column(name = "product_detail_id")
-    private int product_detail_id;
+    private Integer product_detail_id;
 
     @Column(name = "image_link")
+    @NotBlank
     private String imageLink;
 
     @Column(name = "price")
@@ -145,4 +173,6 @@ public class Products {
     private List<Rates> ratesList;
 
 
+    public Products(String productName, String price, String title, String description, int caId, int colorId, int maId, int productDetailId) {
+    }
 }

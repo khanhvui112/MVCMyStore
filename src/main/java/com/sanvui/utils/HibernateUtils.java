@@ -1,6 +1,6 @@
 package com.sanvui.utils;
 
-import com.sanvui.dto.SalaryDTO;
+import com.sanvui.model.dto.SalaryDTO;
 import com.sanvui.model.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

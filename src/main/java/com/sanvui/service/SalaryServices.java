@@ -11,8 +11,4 @@ import java.util.List;
  */
 
 public class SalaryServices {
-    public boolean insert(List<Salary> salaryList){
-        BaseServices services = new BaseServices(Salary.class);
-        return services.insert(salaryList);
-    }
 }

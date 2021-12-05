@@ -1,7 +1,7 @@
 package com.sanvui.model.dao.Imp;
 
 import com.sanvui.model.dao.EmployeeDao;
-import com.sanvui.dto.SalaryDTO;
+import com.sanvui.model.dto.SalaryDTO;
 import com.sanvui.model.entity.Department;
 import com.sanvui.model.entity.Employee;
 import com.sanvui.utils.HibernateUtils;

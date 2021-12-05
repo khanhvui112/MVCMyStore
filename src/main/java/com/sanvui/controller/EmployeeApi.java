@@ -1,17 +1,18 @@
 package com.sanvui.controller;
 
 import com.sanvui.convert.EmployeeConvert;
-import com.sanvui.dto.EmployeeDTO;
+import com.sanvui.model.dto.EmployeeDto;
 import com.sanvui.model.entity.Employee;
 import com.sanvui.service.EmployeeServices;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 
 /**
@@ -24,13 +25,29 @@ import java.util.stream.Collectors;
 public class EmployeeApi {
 
     @Autowired
-    private EmployeeServices service;
+    private EmployeeServices employeeServices;
 
     @GetMapping("/findAll")
-    public List<EmployeeDTO> apiEmployee(){
-        return service.findAll().stream()
+    @ResponseBody
+    public ResponseEntity<List<EmployeeDto>> apiEmployee(){
+
+        List<EmployeeDto> employeeDtos = employeeServices.findAll().stream()
                 .map(e-> EmployeeConvert.getInstance().toDTO(e))
                 .collect(Collectors.toList());
+
+        if(CollectionUtils.isNotEmpty(employeeDtos)){
+            return new ResponseEntity(employeeDtos, HttpStatus.OK);
+        }
+
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/find-all")
+    @ResponseBody
+    public Page<Employee> findAllPage(@RequestParam("page") int page
+            ,@RequestParam(value = "sort", required = false) String sort){
+
+        return employeeServices.getEmployee(page,sort);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.sanvui.convert;
 
-import com.sanvui.dto.MenuDTO;
+import com.sanvui.model.dto.MenuDTO;
 import com.sanvui.model.entity.Menu;
 
 import java.util.List;

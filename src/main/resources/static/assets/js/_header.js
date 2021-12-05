@@ -4,17 +4,17 @@ $(document).ready(function () {
 
 
 function loadMenu() {
-    const url = '/menu-all'
+    const url = '/api/v1/menu/find-all'
     fetch(url)
         .then((resp) => resp.json()) // Transform the data into json
         .then(function (data) {
 
             const username = $("#username").text();
             data.forEach(function (menu, index) {
-                if(menu.menuName === 'Trang chủ'){
-                    $(".site-logo a").attr('href',menu.menuLink);
+                if(menu.meName === 'Trang chủ'){
+                    $(".site-logo a").attr('href',menu.meLink);
                 }
-                if(username !== '' && menu.menuName === 'Đăng nhập'){
+                if(username !== '' && menu.meName === 'Đăng nhập'){
                     $('nav ul').append(
                         `<li id="useraccount">
                              <i style="color: aliceblue;" class="fa fa-user-circle"></i>
@@ -31,7 +31,7 @@ function loadMenu() {
                 }
                 else{
                     $('nav ul').append(
-                        `<li><a href="${menu.menuLink}" class="nav-link">${menu.menuName}</a></li>
+                        `<li><a href="${menu.meLink}" class="nav-link">${menu.meName}</a></li>
                    `
                     );
                     $("#user-section").text('');

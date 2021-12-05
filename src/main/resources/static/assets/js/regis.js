@@ -16,6 +16,9 @@
 
 $(document).ready(function() {
 
+    $(document).ajaxSend(function() {
+        $("#overlay").fadeIn(300);
+    });
     $("#submitBtn"). click(function() {
         const urlSuccess = "/home/login";
         let gender = 'Nam';
@@ -74,11 +77,19 @@ $(document).ready(function() {
                 fail: function(){
                     alert("Danng ky that bai!");
                 }
+            }).done(function() {
+                setTimeout(function(){
+                    $("#overlay").fadeOut(300);
+                },500);
             });
         }
 
     })
+
+
 })
+
+
 function bindingData(parsedData) {
 
     /*

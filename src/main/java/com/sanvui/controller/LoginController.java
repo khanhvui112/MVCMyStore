@@ -1,8 +1,8 @@
 package com.sanvui.controller;
 
 import com.sanvui.convert.LoginConvert;
-import com.sanvui.dto.AccountDto;
-import com.sanvui.dto.LoginDTO;
+import com.sanvui.model.dto.AccountDto;
+import com.sanvui.model.dto.LoginDTO;
 import com.sanvui.model.entity.Employee;
 import com.sanvui.service.EmployeeServices;
 import com.sanvui.utils.AES;
