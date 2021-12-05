@@ -24,4 +24,9 @@ public class S3AwsStorageService implements FileLocalStorageService {
     public Resource loadFileAsResource(String filePath) throws MalformedURLException, FileNotFoundException {
         return null;
     }
+
+    @Override
+    public String buildUrl(String fileName) {
+        return null;
+    }
 }

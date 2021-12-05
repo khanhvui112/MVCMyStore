@@ -42,10 +42,6 @@ $(document).ready(function () {
     $(document).on('click', '#btn-product-save', function() {
         let products = getDataForm();
 
-
-
-        alert("product " +products)
-
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
@@ -81,6 +77,7 @@ function getDataForm(){
     data.append('image_Link', image);
     data.append("productName", $("#name-product").val());
     data.append("price", $("#price-product").val());
+    data.append("sale_code", $("#sale_code").val());
     data.append("title", $("#title").val());
     data.append("description", $("#description").val());
     data.append("ca_id", $("#category").val());
@@ -91,7 +88,7 @@ function getDataForm(){
 }
 
 async function getCategory() {
-    const url = '/api/v1/category/find-All';
+    const url = '/api/v1/category/find-all';
     const response = await fetch(url);
     return await response.json();
 }

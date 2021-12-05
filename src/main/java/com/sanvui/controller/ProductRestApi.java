@@ -23,6 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -45,7 +46,13 @@ public class ProductRestApi {
 
     @GetMapping
     public List<ProductRespDto> findAllCustom() throws IOException {
-        return services.findAllCustom();
+
+        List<ProductRespDto> productRespDtos = services.findAllCustom();
+
+        for (ProductRespDto p : productRespDtos){
+            p.setImageLink(fileLocalStorageService.buildUrl(p.getImageLink()));
+        }
+        return productRespDtos;
     }
 
     @PreAuthorize("hasAnyAuthority ('ADMIN', 'MANAGER')")
@@ -54,6 +61,7 @@ public class ProductRestApi {
             @RequestParam(value = "image_Link", required = false) MultipartFile file
             ,@RequestParam(value ="productName", required = false) String productName
             ,@RequestParam(value ="price", required = false) String price
+            ,@RequestParam(value ="sale_code", required = false) String saleCode
             ,@RequestParam(value ="title", required = false) String title
             ,@RequestParam(value ="description", required = false) String description
             ,@RequestParam(value ="ca_id", required = false) String caId
@@ -64,6 +72,7 @@ public class ProductRestApi {
         Products product = new Products();
         product.setProductName(productName);
         product.setPrice(price);
+        product.setSale_code(saleCode);
         product.setTitle(title);
         product.setDescription(description);
         product.setCa_id(Integer.parseInt(caId));
@@ -72,7 +81,7 @@ public class ProductRestApi {
         product.setProduct_detail_id(Integer.parseInt(productDetailId));
 
         if(!file.isEmpty()){
-            String imageLink = fileLocalStorageService.saveFile(file,"product");
+            String imageLink ="/" + fileLocalStorageService.saveFile(file,"product");
             product.setImageLink(imageLink);
         }
         services.save(product);

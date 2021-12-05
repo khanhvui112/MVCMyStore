@@ -1,6 +1,6 @@
 /*CSS section product */
 .header_main {
-    padding-top: 6%;
+    padding-top: 1%;
     margin: 0;
     color: #FFFFFF;
     border-bottom-right-radius: 50px;
@@ -49,7 +49,7 @@
 }
 .lts-products .item {
     margin: 0 10px 10px 0;
-    width: calc(1/5*100% - (1 - 1/5)*10px);
+    width: calc(1/5*100% - (2 - 6/4)*20px);
     background: #fff;
     box-shadow: 0 4px 6px #00000029;
     border-radius: 8px;

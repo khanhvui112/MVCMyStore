@@ -54,13 +54,13 @@ function getProduct() {
                                 </div>` : ``) +
                         `<div class="img">
                               <a href="/product/product-${o.productId}" title="${o.productName}">
-                                <img src="/assets/images/products/${o.imageLink}" alt="${o.productName}" title="${o.productName}">
+                                <img src="${o.imageLink}" alt="${o.productName}" title="${o.productName}">
                               </a>
                             </div>
                             <div class="info">
                               <a href="/product/product-${o.productId}" class="title" title="${o.productName}">${o.productName}</a>
                               <span class="price">` +
-                        (o.sale_code === null ? `<strong>${o.price} ₫</strong>`
+                            (o.sale_code === null ? `<strong>${o.price} ₫</strong>`
                             :
                             `<strong>${price} ₫</strong>
                                       <strike>${o.price} ₫</strike>`) +
@@ -85,7 +85,12 @@ function priceSale(data) {
     * */
     if (data.price !== '' && data.sale_code !== null) {
         //replace char ',' after parser to int
-        price = parseInt((data.price).replaceAll(",", ''));
+        let indexC = data.price.indexOf(',');
+        if(indexC !== -1){
+            price = parseInt((data.price).replaceAll(",", ''));
+        }else {
+            price = parseInt((data.price).replaceAll(".", ''));
+        }
 
         let index;
 
