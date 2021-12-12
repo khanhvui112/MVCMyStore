@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.TermVector;
@@ -77,7 +79,6 @@ public class Employee {
     private String phone;
 
 
-
     @NonNull
     @Column(name = "dep_id")
     private Integer dep_id;
@@ -108,7 +109,7 @@ public class Employee {
     //    map to avatar
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL
             , fetch = FetchType.LAZY, orphanRemoval = true)
-    @JsonBackReference(value = "avatar" )
+    @JsonBackReference(value = "avatar")
     @ToString.Exclude
     private Avatar avatar;
 
@@ -116,57 +117,63 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "dep_id", referencedColumnName = "dep_id"
             , insertable = false, updatable = false)
-    @JsonBackReference(value = "department" )
+    @JsonBackReference(value = "department")
     @ToString.Exclude
     private Department department;
 
     //    Mapping to Menu
     @OneToMany(mappedBy = "employee", orphanRemoval = true
-            , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "menu" )
+            , cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "menu")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ToString.Exclude
     private List<Menu> menuList;
 
     //    Mapper to Order by employee
     @OneToMany(mappedBy = "employee", orphanRemoval = true
             , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference(value = "order" )
+    @JsonManagedReference(value = "order")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ToString.Exclude
     private List<Orders> orders;
 
     //    Mapping to Role by coleCode
-    @OneToMany(mappedBy="employee", orphanRemoval = true
+    @OneToMany(mappedBy = "employee", orphanRemoval = true
             , fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ToString.Exclude
-    @JsonManagedReference(value = "employeeRoles" )
+    @JsonManagedReference(value = "employeeRoles")
     private List<EmployeeRole> employeeRoles;
 
 
     //    Mapper to Payments by employee
-    @OneToMany(mappedBy = "employee", orphanRemoval = true, fetch = FetchType.LAZY
+    @OneToMany(mappedBy = "employee", orphanRemoval = true
             , cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "payment" )
+    @JsonManagedReference(value = "payment")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ToString.Exclude
     private List<Payment> payments;
 
     //    mapper to Rates
-    @OneToMany(mappedBy = "employee", orphanRemoval = true, fetch = FetchType.LAZY
+    @OneToMany(mappedBy = "employee", orphanRemoval = true
             , cascade = CascadeType.ALL)
-    @JsonBackReference(value = "rate" )
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonBackReference(value = "rate")
     @ToString.Exclude
     private List<Rates> ratesList;
 
     //    mapper to Interview
-    @OneToMany(mappedBy = "employee", orphanRemoval = true, fetch = FetchType.LAZY
+    @OneToMany(mappedBy = "employee", orphanRemoval = true
             , cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "interview" )
+    @JsonManagedReference(value = "interview")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ToString.Exclude
     private List<Interview> interviewList;
 
     //    mapper to Salary
     @OneToMany(mappedBy = "employee", orphanRemoval = true
-            , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "salary" )
+            , cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonManagedReference(value = "salary")
     @ToString.Exclude
     private List<Salary> salaryList;
 

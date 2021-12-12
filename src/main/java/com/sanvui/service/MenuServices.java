@@ -1,9 +1,11 @@
 package com.sanvui.service;
 
-import com.sanvui.model.dto.resp.MenuRespDto;
+import com.sanvui.model.dto.resp.MenuResponseDto;
 import com.sanvui.model.entity.Menu;
 import com.sanvui.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,11 +22,12 @@ public class MenuServices {
     @Autowired
     private MenuRepository menuRepository;
 
-    public List<Menu> findAll(){
-        return (List<Menu>) menuRepository.findAll();
+    public List<Menu> findAll() {
+        return menuRepository.findAll();
     }
 
-    public List<MenuRespDto> findAllByCustom() throws IOException {
+    @Cacheable("menus")
+    public List<MenuResponseDto> findAllByCustom() throws IOException {
         return menuRepository.getAllMenuResp();
     }
 }

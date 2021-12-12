@@ -21,7 +21,11 @@ import java.util.List;
  * @mailto: sanvankhanh@gmail.com
  */
 @ValidAfterDate
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @ToString
 @Table(name = "sales")
@@ -61,15 +65,9 @@ public class Sales {
     @NonNull
     @Column(name = "status", columnDefinition = "bit")
     @NotNull(message = "Status can't null.")
-    @Range(min = 0,max = 1, message = "{range.size}")
+    @Range(min = 0, max = 1, message = "{range.size}")
     @Field(termVector = TermVector.YES)
     private int status;
 
-//    mapper Products by sales
-    @OneToMany(mappedBy = "sales", cascade = CascadeType.ALL
-            , orphanRemoval = true, fetch =FetchType.LAZY)
-    @JsonManagedReference(value="sale")
-    @ToString.Exclude
-    private List<Products> products;
 
 }

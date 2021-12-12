@@ -1,7 +1,5 @@
 package com.sanvui.repository.custom.impl;
 
-import com.sanvui.model.dto.CategoryDto;
-import com.sanvui.model.dto.resp.CategoryRespDto;
 import com.sanvui.repository.custom.CustomizeCategoryRepository;
 import com.sanvui.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;

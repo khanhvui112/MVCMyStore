@@ -1,20 +1,20 @@
 package com.sanvui.controller;
 
-import com.sanvui.model.dto.param.MailParamDto;
-import com.sanvui.service.EmailService;
+import com.sanvui.model.dto.resp.ProductResponseDto;
 import com.sanvui.service.FileLocalStorageService;
-import com.sanvui.service.MenuServices;
-import com.sanvui.utils.SessionLoginDtoUtil;
+import com.sanvui.service.ProductsServices;
+import com.sanvui.utils.SecurityUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
+import java.io.IOException;
 
 /**
  * @author: VuiSK
@@ -25,16 +25,20 @@ import java.net.MalformedURLException;
 public class HomeController {
 
     @Autowired
-    EmailService emailService;
+    private ProductsServices productsServices;
 
     @Autowired
-    FileLocalStorageService fileLocalStorageService;
+    private FileLocalStorageService fileLocalStorageService;
 
-    @GetMapping({"/home","/"})
-    public String home(@CookieValue(value=("accessToken"), defaultValue = "") String cookie
-            ,HttpSession session) throws MessagingException, UnsupportedEncodingException, MalformedURLException, FileNotFoundException {
+    @GetMapping({"/home", "/"})
+    public String home(HttpSession session) throws IOException {
 
-        String fileName = "/product/xiaomiviet.vn-dien-thoai-xiaomi-mi-note-10-lite-dien-thoai-xiaomi-mi-note-10-lite-1.jpg";
+
+        String userName = SecurityUtil.getIdCurrentUserLogin();
+
+        if (StringUtils.isNotBlank(userName)) {
+            session.setAttribute("userName", userName);
+        }
 
         return "home";
     }

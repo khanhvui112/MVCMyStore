@@ -43,7 +43,7 @@ public class EmployeeFileExcel {
                     employee.setFirstName(r.getCell(0).getStringCellValue());
                     employee.setLastName(r.getCell(1).getStringCellValue());
                     employee.setEmail(r.getCell(2).getStringCellValue());
-                    employee.setPhone( r.getCell(3).getStringCellValue());
+                    employee.setPhone(r.getCell(3).getStringCellValue());
                     employee.setAddress(r.getCell(4).getStringCellValue());
                     employee.setUserName(r.getCell(5).getStringCellValue());
                     employee.setPassword(r.getCell(6).getStringCellValue());

@@ -1,8 +1,7 @@
 package com.sanvui.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.sanvui.model.dto.CategoryDto;
-import com.sanvui.model.dto.resp.MenuRespDto;
+import com.sanvui.model.dto.resp.MenuResponseDto;
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
 
@@ -19,7 +18,7 @@ import java.time.LocalDateTime;
         name = "menuCustomResultMapping",
         classes = {
                 @ConstructorResult(
-                        targetClass = MenuRespDto.class,
+                        targetClass = MenuResponseDto.class,
                         columns = {
                                 @ColumnResult(name = "me_id", type = Integer.class),
                                 @ColumnResult(name = "me_name", type = String.class),
@@ -29,7 +28,11 @@ import java.time.LocalDateTime;
                 )
         }
 )
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @ToString
 @Table(name = "menu")
@@ -61,12 +64,12 @@ public class Menu {
     @NonNull
     @Column(name = "emp_id", nullable = false)
     private int emp_id;
-    
-//    mapper to Employee
+
+    //    mapper to Employee
     @ManyToOne
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id"
             , insertable = false, updatable = false)
-    @JsonBackReference(value = "menu" )
+    @JsonBackReference(value = "menu")
     @ToString.Exclude
     private Employee employee;
 

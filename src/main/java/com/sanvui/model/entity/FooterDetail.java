@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table( name = "footerdetail")
+@Table(name = "footerdetail")
 public class FooterDetail {
     @Id
     @Column(name = "footer_detail_id")
@@ -35,7 +35,7 @@ public class FooterDetail {
     @NotNull(message = "Vui lòng nhập tên footer")
     private String footerDetailName;
 
-    @Column(name = "footer_detail_link",columnDefinition = "nvarchar(255)")
+    @Column(name = "footer_detail_link", columnDefinition = "nvarchar(255)")
     @Size(max = 255, message = "Vui lòng nhập link footer nhỏ hơn 255")
     @NotNull(message = "Vui lòng nhập link footer")
     private String footerDetailLink;

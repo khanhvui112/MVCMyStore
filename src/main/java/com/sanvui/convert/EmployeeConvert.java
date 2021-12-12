@@ -32,7 +32,7 @@ public class EmployeeConvert {
         }
         if (!entity.getEmployeeRoles().isEmpty()) {
             List<String> roles = new ArrayList<>();
-            for(EmployeeRole e : entity.getEmployeeRoles()){
+            for (EmployeeRole e : entity.getEmployeeRoles()) {
                 roles.add(e.getRole().getRoleName());
             }
 

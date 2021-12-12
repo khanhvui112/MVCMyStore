@@ -21,11 +21,11 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name ="candidates")
+@Table(name = "candidates")
 public class Candidates {
     @Id
     @Column(name = "ca_id")
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int caId;
 
     @NonNull
@@ -40,7 +40,7 @@ public class Candidates {
     private String fullName;
 
     @NonNull
-    @Column(name = "address", columnDefinition = "nvarchar(100)" )
+    @Column(name = "address", columnDefinition = "nvarchar(100)")
     @Size(max = 100, message = "{name.max}")
     private String address;
 
@@ -73,17 +73,17 @@ public class Candidates {
     private String foreignLanguage;
 
     @NonNull
-    @Column(name = "interview_id",nullable = false)
+    @Column(name = "interview_id", nullable = false)
     private int interview_Id;
 
-//    mapper to EntryTest
-    @OneToMany(mappedBy = "candidates",orphanRemoval = true
-            , fetch =FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "candidates" )
+    //    mapper to EntryTest
+    @OneToMany(mappedBy = "candidates", orphanRemoval = true
+            , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "candidates")
     @ToString.Exclude
     private List<Entrytest> entrytestList;
 
-//    mapping to Interview
+    //    mapping to Interview
     @ManyToOne
     @JoinColumn(name = "interview_id", columnDefinition = "interview_id"
             , insertable = false, updatable = false)

@@ -5,10 +5,7 @@ import com.sanvui.model.dto.MessageValidator;
 import com.sanvui.model.dto.param.MailParamDto;
 import com.sanvui.model.entity.Employee;
 import com.sanvui.repository.EmployeeRepository;
-import com.sanvui.utils.AES;
-import com.sanvui.utils.EncyptUtil;
-import com.sanvui.utils.MailParamDtoUtil;
-import com.sanvui.utils.TokenUtil;
+import com.sanvui.utils.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,8 +20,7 @@ import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author: VuiSK
@@ -38,7 +34,7 @@ public class EmployeeServices {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @Value("${app.page.size}")
+    @Value("${app.page.employees.size}")
     private Integer pageSize;
 
     @Value("${app.key.encrypt}")
@@ -53,9 +49,23 @@ public class EmployeeServices {
     @Autowired
     private EmailService emailService;
 
-    public List<Employee> findAll() {
-        return employeeRepository.findAll();
+    /*
+    * Find all employee by repository custom
+    * */
+    public Page<Employee> findAll(Integer page, String sort) {
+        List<String> sortMap= new ArrayList<>();
+
+        if(StringUtils.isNotBlank(sort)){
+            sortMap.add(sort);
+        }
+
+        Pageable pageable = PageRequest.of(page, pageSize, SortUtil.generateSort(sortMap, "empId"));
+        return employeeRepository.findAll(pageable);
     }
+
+/*    public List<Employee> findAll() {
+        return employeeRepository.findAll();
+    }*/
 
     public MessageValidator insert(Employee employee) {
         boolean username = generateCheck(employee, "username");
@@ -133,17 +143,14 @@ public class EmployeeServices {
         return "/account/_token-not-found";
     }
 
-    public Employee getValidEmployee(AccountDto dto) {
-        return employeeRepository.findByUserNameAndPassword(dto.getUserName(), EncyptUtil.hashText(dto.getPassword()));
-    }
 
-    public Employee findByUserName(String s) {
+    public Optional<Employee> findByUserName(String s) {
         return employeeRepository.findByUserName(s);
     }
 
     public boolean generateCheck(Employee employee, String name) {
         if (name.equals("username")) {
-            return employeeRepository.findByUserName(employee.getUserName()) != null;
+            return employeeRepository.findByUserName(employee.getUserName()).isPresent();
         }
         if (name.equals("phone")) {
             return employeeRepository.findByPhone(employee.getPhone()) != null;
@@ -152,23 +159,6 @@ public class EmployeeServices {
             return employeeRepository.findByEmail(employee.getEmail()) != null;
         }
         return false;
-    }
-
-    public Page<Employee> getEmployee(Integer page, String sort) {
-        Pageable pageable = PageRequest.of(page, pageSize, generateSort(sort));
-        return employeeRepository.findAll(pageable);
-    }
-
-    private Sort generateSort(String sort) {
-        Sort.Order orderByDefault = Sort.Order.desc("empId");
-
-
-        if (StringUtils.isBlank(sort)) {
-            return Sort.by(orderByDefault);
-        }
-        Sort.Order orderBySortField = sort.startsWith("-") ?
-                Sort.Order.desc(sort.substring(1)) : Sort.Order.asc(sort);
-        return Sort.by(orderBySortField, orderByDefault);
     }
 
 

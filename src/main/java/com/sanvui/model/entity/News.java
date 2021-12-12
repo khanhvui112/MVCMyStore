@@ -17,7 +17,11 @@ import java.time.LocalDateTime;
  * @created: 06/11/2021-1:53 PM
  * @mailto: sanvankhanh@gmail.com
  */
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Indexed
 @ToString
@@ -30,7 +34,7 @@ public class News {
     private int newsId;
 
     @NonNull
-    @Column(name = "ca_id",nullable = false)
+    @Column(name = "ca_id", nullable = false)
     private int ca_Id;
 
     @NonNull
@@ -39,24 +43,24 @@ public class News {
     private LocalDateTime date;
 
     @NonNull
-    @Column( name = "title", columnDefinition = "nvarchar(200)")
+    @Column(name = "title", columnDefinition = "nvarchar(200)")
     @Size(max = 200, message = "{name.max}")
     @Field(termVector = TermVector.YES)
     private String title;
 
     @NonNull
     @Field(termVector = TermVector.YES)
-    @Column( name = "description", columnDefinition = "nvarchar(2000)")
+    @Column(name = "description", columnDefinition = "nvarchar(2000)")
     @Size(max = 2000, message = "{name.max}")
     private String description;
 
     @NonNull
-    @Column( name = "comments", columnDefinition = "nvarchar(200)")
+    @Column(name = "comments", columnDefinition = "nvarchar(200)")
     private String comments;
 
-//    mapper
+    //    mapper
     @ManyToOne
-    @JoinColumn(name ="ca_id", referencedColumnName = "ca_id"
+    @JoinColumn(name = "ca_id", referencedColumnName = "ca_id"
             , insertable = false, updatable = false)
     @JsonBackReference(value = "news")
     @ToString.Exclude

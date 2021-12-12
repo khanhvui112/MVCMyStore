@@ -1,7 +1,6 @@
+(function ($) {
 
-(function($) {
-
-    $(".toggle-password").click(function() {
+    $(".toggle-password").click(function () {
 
         $(this).toggleClass("zmdi-eye zmdi-eye");
         var input = $($(this).attr("toggle"));
@@ -14,15 +13,18 @@
 
 })(jQuery);
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $(document).ajaxSend(function() {
-        $("#overlay").fadeIn(300);
-    });
-    $("#submitBtn"). click(function() {
-        const urlSuccess = "/home/login";
+
+    $("#submitBtn").click(function () {
+
+        $(document).ajaxSend(function () {
+            $("#overlay-regis").fadeIn(300);
+        });
+
+        const urlSuccess = "/login";
         let gender = 'Nam';
-        if($("#female").prop("checked") == true) {
+        if ($("#female").prop("checked") == true) {
             gender = "Nữ";
         }
         let fname = $("#fname").val();
@@ -37,50 +39,50 @@ $(document).ready(function() {
 
         //check validate
         let check1 = validateUserName(username);
-        let check2= validatePhone(phone);
+        let check2 = validatePhone(phone);
         let check3 = validateEmail(email);
         let check4 = validatePassword(password, repassword);
         let check5 = validateDate(dateOfBirth);
         dateOfBirth = convertToDate(dateOfBirth);
 
-        if(check1 === true
-            && check2 ===true
+        if (check1 === true
+            && check2 === true
             && check3 === true
             && check4 === true
-            && check5 === true){
+            && check5 === true) {
 
             $.ajax({
                 type: "POST",
-                url:'http://localhost:9999/home/signup',
+                url: '/signup',
                 contentType: "application/json; charset=utf-8",
-                data:JSON.stringify({
-                    "firstName":fname,
-                    "lastName":lname,
-                    "gender" : gender,
-                    "userName":username,
-                    "phone":phone,
-                    "email":email,
-                    "password":password,
-                    "address":address,
-                    "dateOfBirth":dateOfBirth,
+                data: JSON.stringify({
+                    "firstName": fname,
+                    "lastName": lname,
+                    "gender": gender,
+                    "userName": username,
+                    "phone": phone,
+                    "email": email,
+                    "password": password,
+                    "address": address,
+                    "dateOfBirth": dateOfBirth,
 
                 }),
-                success:function(data){
+                success: function (data) {
                     let parsedData = JSON.parse(JSON.stringify(data));
-                    if(parsedData.status === 'true'){
+                    if (parsedData.status === 'true') {
                         location.replace(urlSuccess)
-                    }else {
+                    } else {
                         bindingData(parsedData);
                     }
 
                 },
-                fail: function(){
+                fail: function () {
                     alert("Danng ky that bai!");
                 }
-            }).done(function() {
-                setTimeout(function(){
-                    $("#overlay").fadeOut(300);
-                },500);
+            }).done(function () {
+                setTimeout(function () {
+                    $("#overlay-regis").fadeOut(300);
+                });
             });
         }
 
@@ -95,155 +97,158 @@ function bindingData(parsedData) {
     /*
     * username
     * */
-    if(parsedData.userName === undefined) {
+    if (parsedData.userName === undefined) {
         $("#spanUserName").text('');
-        $("#username").css('border','1px solid #ebebeb');
-    }else{
+        $("#username").css('border', '1px solid #ebebeb');
+    } else {
         $("#spanUserName").text(parsedData.userName);
-        $("#username").css('border','1px solid #fa4b4b');
+        $("#username").css('border', '1px solid #fa4b4b');
     }
 
     /*
     * password
     * */
-    if(parsedData.password === undefined) {
+    if (parsedData.password === undefined) {
         $("#spanPassword").text('');
-        $("#password").css('border','1px solid #ebebeb');
-    }else{
+        $("#password").css('border', '1px solid #ebebeb');
+    } else {
         $("#spanPassword").text(parsedData.password);
-        $("#password").css('border','1px solid #fa4b4b');
+        $("#password").css('border', '1px solid #fa4b4b');
     }
 
 
     /*
     * email
     * */
-    if(parsedData.email === undefined) {
+    if (parsedData.email === undefined) {
         $("#spanEmail").text('');
-        $("#email").css('border','1px solid #ebebeb');
-    }else {
+        $("#email").css('border', '1px solid #ebebeb');
+    } else {
         $("#spanEmail").text(parsedData.email);
-        $("#email").css('border','1px solid #fa4b4b');
+        $("#email").css('border', '1px solid #fa4b4b');
     }
 
     /*
     * phone
     * */
-    if(parsedData.phone === undefined) {
+    if (parsedData.phone === undefined) {
         $("#spanPhone").text('');
-        $("#phone").css('border','1px solid #ebebeb');
+        $("#phone").css('border', '1px solid #ebebeb');
 
-    }else {
+    } else {
         $("#spanPhone").text(parsedData.phone);
-        $("#phone").css('border','1px solid #fa4b4b');
+        $("#phone").css('border', '1px solid #fa4b4b');
     }
 
     /*
     * repassword
     * */
 
-    if(parsedData.rePassword === undefined) {
+    if (parsedData.rePassword === undefined) {
         $("#spanRePassword").text('');
-        $("#repassword").css('border','1px solid #ebebeb');
+        $("#repassword").css('border', '1px solid #ebebeb');
 
-    }else{
+    } else {
         $("#spanRePassword").text(parsedData.rePassword);
-        $("#repassword").css('border','1px solid #fa4b4b');
+        $("#repassword").css('border', '1px solid #fa4b4b');
     }
 
     /*
     * date of birth
     * */
-    if(parsedData.dateOfBirth === undefined) {
+    if (parsedData.dateOfBirth === undefined) {
         $("#spanDateOfBirth").text('');
-        $("#birthday").css('border','1px solid #ebebeb');
-    }else {
+        $("#birthday").css('border', '1px solid #ebebeb');
+    } else {
         $("#spanDateOfBirth").text(parsedData.dateOfBirth);
-        $("#birthday").css('border','1px solid #fa4b4b');
+        $("#birthday").css('border', '1px solid #fa4b4b');
     }
 
-    if(parsedData.status === 'false'){
+    if (parsedData.status === 'false') {
         $("#spanStatus").text('Đăng ký thất bại.');
     }
 }
+
 function validateUserName(userName) {
     let check = true;
     let text;
-    if(userName.length < 6 || userName.length > 100 ){
+    if (userName.length < 6 || userName.length > 100) {
         text = 'Tên đăng nhập tối thiểu là 6 tối đa là 100.';
         check = false;
     }
-    if(userName === ''){
+    if (userName === '') {
         text = 'Vui lòng nhập tên đăng nhập.';
         check = false;
     }
-    if(!check){
+    if (!check) {
         $("#spanUserName").text(text);
-        $("#username").css('border','1px solid #fa4b4b');
+        $("#username").css('border', '1px solid #fa4b4b');
         return false;
-    }else {
+    } else {
         $("#spanUserName").text('');
-        $("#username").css('border','1px solid #ebebeb');
+        $("#username").css('border', '1px solid #ebebeb');
         return true;
     }
 
 }
+
 function validatePhone(phone) {
     let vnf_regex = /(([\+84|84|0]+(3|5|7|8|9|1))+([0-9]{8})\b)/g;
 
     let checkPhone = true;
     let textPhone;
 
-    if(phone !==''){
-        if (!vnf_regex.test(phone))
-        {
+    if (phone !== '') {
+        if (!vnf_regex.test(phone)) {
             textPhone = 'Số điện thoại của bạn không đúng định dạng!';
             checkPhone = false;
         }
-    }else{
-       textPhone = 'Bạn chưa điền số điện thoại!';
-       checkPhone = false;
+    } else {
+        textPhone = 'Bạn chưa điền số điện thoại!';
+        checkPhone = false;
     }
 
-    if(!checkPhone){
+    if (!checkPhone) {
         $("#spanPhone").text(textPhone);
-        $("#phone").css('border','1px solid #fa4b4b');
+        $("#phone").css('border', '1px solid #fa4b4b');
         return false;
-    }else {
+    } else {
         $("#spanPhone").text('');
-        $("#phone").css('border','1px solid #ebebeb');
+        $("#phone").css('border', '1px solid #ebebeb');
         return true;
     }
 
 }
+
 function validateEmail(email) {
     const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     let checkMail = true;
 
 
     let textMail;
-    if(email!==''){
+    if (email !== '') {
         let index = email.indexOf('@');
-        let sizeMail = email.substring(0,index);
-        if(!emailReg.test(email) || sizeMail.length < 3){
+        let sizeMail = email.substring(0, index);
+        if (!emailReg.test(email) || sizeMail.length < 3) {
             textMail = 'Email không đúng vui lòng kiểm tra lại!';
             checkMail = false
         }
-    }else {
+    } else {
         textMail = 'Bạn chưa điền email!';
         checkMail = false;
     }
-    if(!checkMail){
+    if (!checkMail) {
         $("#spanEmail").text(textMail);
-        $("#email").css('border','1px solid #fa4b4b');
+        $("#email").css('border', '1px solid #fa4b4b');
         return false;
-    }else{
+    } else {
         $("#spanEmail").text('');
-        $("#email").css('border','1px solid #ebebeb');
+        $("#email").css('border', '1px solid #ebebeb');
         return true;
     }
 
 }
+
 function validatePassword(password, repassword) {
     const passwordReg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,100}$/;
 
@@ -251,70 +256,72 @@ function validatePassword(password, repassword) {
 
 
     let textPass;
-    if(password!==''){
-        if(!passwordReg.test(password)){
+    if (password !== '') {
+        if (!passwordReg.test(password)) {
             textPass = 'Mật khẩu quá yếu!';
             checkPass = false;
         }
-        if(password.length < 8){
+        if (password.length < 8) {
             textPass = 'Mật khẩu quá ngắn!';
             checkPass = false;
         }
-        if(password.length > 100){
+        if (password.length > 100) {
             textPass = 'Mật khẩu quá dài!';
             checkPass = false;
         }
-        if(repassword !== password){
+        if (repassword !== password) {
             checkPass = false;
             $("#spanRePassword").text('Mật khẩu không trùng nhau!');
-            $("#repassword").css('border','1px solid #fa4b4b');
+            $("#repassword").css('border', '1px solid #fa4b4b');
         }
-    }else {
+    } else {
         textPass = 'Bạn chưa điền mật khẩu!';
         checkPass = false;
     }
 
-    if(!checkPass){
+    if (!checkPass) {
         $("#spanPassword").text(textPass);
-        $("#password").css('border','1px solid #fa4b4b');
+        $("#password").css('border', '1px solid #fa4b4b');
         return false;
-    }else{
+    } else {
         $("#spanPassword").text('');
-        $("#password").css('border','1px solid #ebebeb');
+        $("#password").css('border', '1px solid #ebebeb');
         $("#spanRePassword").text('');
-        $("#repassword").css('border','1px solid #ebebeb');
+        $("#repassword").css('border', '1px solid #ebebeb');
         return true;
     }
 
 }
+
 function validateDate(date) {
     let dateVali = new Date(date);
     let dateNow = new Date();
     let checkDate = true;
     let textDate;
-    if(!isNaN(dateVali)){
-        if(dateVali.getTime() > dateNow.getTime()){
+    if (!isNaN(dateVali)) {
+        if (dateVali.getTime() > dateNow.getTime()) {
             textDate = 'Vui lòng nhập ngày sinh hợp lệ!'
             checkDate = false;
         }
-    }else {
+    } else {
         textDate = 'Bạn chưa nhập ngày sinh!'
         checkDate = false;
     }
-    if(!checkDate){
+    if (!checkDate) {
         $("#spanDateOfBirth").text(textDate);
-        $("#birthday").css('border','1px solid #fa4b4b');
+        $("#birthday").css('border', '1px solid #fa4b4b');
         return false;
-    }else {
+    } else {
         $("#spanDateOfBirth").text('');
-        $("#birthday").css('border','1px solid #ebebeb');
+        $("#birthday").css('border', '1px solid #ebebeb');
         return true;
     }
 
 }
-function convertToDate(date){
-    let year = date.substring(0,date.indexOf("-"));
-    let month = date.substring(date.indexOf("-")+1, date.lastIndexOf("-"));
-    let day = date.substring(date.lastIndexOf("-")+1);
-    return day+"-"+month+"-"+year;
+
+function convertToDate(date) {
+    let year = date.substring(0, date.indexOf("-"));
+    let month = date.substring(date.indexOf("-") + 1, date.lastIndexOf("-"));
+    let day = date.substring(date.lastIndexOf("-") + 1);
+    return day + "-" + month + "-" + year;
 }

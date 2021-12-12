@@ -8,6 +8,6 @@ import com.sanvui.model.dao.JobsDao;
  * @mailto: sanvankhanh@gmail.com
  */
 
-public class JobsDaoImp implements JobsDao{
+public class JobsDaoImp implements JobsDao {
 
 }

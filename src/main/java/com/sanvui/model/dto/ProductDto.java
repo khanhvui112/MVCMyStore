@@ -50,7 +50,7 @@ public class ProductDto implements Serializable {
 
     private String price;
 
-/*    private MultipartFile image_Link;*/
+    /*    private MultipartFile image_Link;*/
 
     private String imageUrl;
 

@@ -1,0 +1,83 @@
+.container-products {
+    min-width: 1200px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.container-products .header {
+    text-align: center;
+    color: deepskyblue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI';
+}
+
+.lts-products {
+    display: flex;
+    flex-flow: wrap;
+    animation: append .2s ease-in-out;
+}
+
+.lts-products .item {
+    margin: 0 10px 10px 0;
+    width: calc(1 / 5 * 100% - (2 - 6 / 4) * 20px);
+    background: #fff;
+    box-shadow: 0 4px 6px #00000029;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+}
+
+.lts-products .item .img {
+    width: 190px;
+    margin: 20px auto 0 auto;
+}
+
+.lts-products .item .img img {
+    width: 100%;
+}
+
+.lts-products .item .img img:hover {
+    filter: brightness(100%);
+    transform: scale(1.2);
+}
+
+.lts-products .item .info {
+    margin-top: 5px;
+    padding: 0 10px 15px 10px;
+}
+
+.lts-products .item button {
+    margin-bottom: 8px;
+}
+
+.lts-products .item .info a.title, .lts-product .item .info a.title:link, .lts-product .item .info a.title:visited {
+    color: #000;
+    font-weight: bold;
+    display: block;
+}
+
+.lts-products > .item > .info > a:hover {
+    text-decoration: none;
+    color: #00483d;
+}
+
+.lts-products .item .info .price strong {
+    font-size: 16px;
+    color: #fd475a;
+}
+
+.item > .sticker-left {
+    border-radius: 53%;
+    float: right;
+    background-color: red;
+    display: inline-block;
+    color: floralwhite;
+    width: 18%;
+}
+
+.item > .sticker-left > span {
+    font-size: 86%;
+}
+.link-active {
+    color: navy;
+    background: lightblue;
+}

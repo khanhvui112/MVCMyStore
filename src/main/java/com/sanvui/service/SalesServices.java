@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public class SalesServices {
-    public boolean insertSales(List<Sales> sales){
+    public boolean insertSales(List<Sales> sales) {
         return false;
     }
 }

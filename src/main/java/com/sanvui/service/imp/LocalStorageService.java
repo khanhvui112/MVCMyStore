@@ -34,14 +34,14 @@ public class LocalStorageService implements FileLocalStorageService {
 
     @Override
     public String saveFile(MultipartFile file, String folderUser) throws IOException {
-        Path filePath = getFilePath(file.getOriginalFilename(),folderUser );
+        Path filePath = getFilePath(file.getOriginalFilename(), folderUser);
 
         /*
-        * push file client to folder serve
-        * transferFile to folder
-        *
-        * save file success
-        * */
+         * push file client to folder serve
+         * transferFile to folder
+         *
+         * save file success
+         * */
         file.transferTo(filePath);
         return FilenameUtils.separatorsToUnix(filePath.toString()).replaceAll(fileLocation, "");
     }

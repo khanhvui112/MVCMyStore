@@ -10,7 +10,7 @@ import java.time.ZoneId;
  */
 
 public final class DateTimeUtil {
-    public static Long convertToUnixTime(LocalDateTime dateTime){
+    public static Long convertToUnixTime(LocalDateTime dateTime) {
         return dateTime.atZone(ZoneId.systemDefault()).toEpochSecond();
     }
 }

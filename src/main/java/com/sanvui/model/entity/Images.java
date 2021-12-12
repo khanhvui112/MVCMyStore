@@ -12,7 +12,11 @@ import javax.validation.constraints.Size;
  * @created: 07/11/2021-9:26 AM
  * @mailto: sanvankhanh@gmail.com
  */
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @ToString
 @Table(name = "images")
@@ -32,8 +36,8 @@ public class Images {
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id"
-            ,updatable = false, insertable = false)
-    @JsonBackReference(value="image")
+            , updatable = false, insertable = false)
+    @JsonBackReference(value = "image")
     @ToString.Exclude
     private Products product;
 

@@ -1,5 +1,7 @@
 package com.sanvui.controller;
 
+import com.sanvui.utils.SecurityUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -18,10 +21,17 @@ import java.io.IOException;
  */
 
 @Controller
-public class DashboardController extends HttpServlet {
+public class DashboardController {
 
     @GetMapping({"/admin-dashboard"})
-    public String dashBoard(){
+    public String dashBoard(HttpSession session) {
+
+        String userName = SecurityUtil.getIdCurrentUserLogin();
+
+        if (StringUtils.isNotBlank(userName)) {
+            session.setAttribute("userName", userName);
+        }
+
         return "dashboard";
     }
 }

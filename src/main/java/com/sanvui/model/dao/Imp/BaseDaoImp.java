@@ -143,13 +143,13 @@ public class BaseDaoImp<T> implements BaseDao<T> {
             session.flush();
             session.clear();
             String nameId = null;
-            if(classTyper.getSimpleName().equalsIgnoreCase("Color")){
+            if (classTyper.getSimpleName().equalsIgnoreCase("Color")) {
                 nameId = "color_Id";
             }
 
 
 // Remove all entities referenced in the List ids variable
-            Query query = session.createQuery("DELETE "+classTyper.getName()+" WHERE "+nameId+" IN (:ids)");
+            Query query = session.createQuery("DELETE " + classTyper.getName() + " WHERE " + nameId + " IN (:ids)");
             query.setParameter("ids", ids);
             int result = query.executeUpdate();
             transaction.commit();

@@ -13,7 +13,11 @@ import java.time.LocalDate;
  * @mailto: sanvankhanh@gmail.com
  */
 @ValidAfterDate
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @ToString
 @Table(name = "salary")
@@ -43,11 +47,11 @@ public class Salary {
     @Column(name = "bonus", precision = 10, scale = 2, columnDefinition = "decimal(10,2)")
     private double bonus;
 
-//    mapping to Employee
+    //    mapping to Employee
     @ManyToOne
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id"
             , insertable = false, updatable = false)
-    @JsonBackReference(value = "salary" )
+    @JsonBackReference(value = "salary")
     @ToString.Exclude
     private Employee employee;
 

@@ -2,6 +2,8 @@ package com.sanvui.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sanvui.model.dto.resp.ColorResponseDto;
+import com.sanvui.model.dto.resp.ManufacturerResponseDto;
 import lombok.*;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
@@ -17,7 +19,18 @@ import java.util.List;
  * @created: 06/11/2021-9:56 AM
  * @mailto: sanvankhanh@gmail.com
  */
-
+@SqlResultSetMapping(
+        name = "manufacturerCustomResultMapping",
+        classes = {
+                @ConstructorResult(
+                        targetClass = ManufacturerResponseDto.class,
+                        columns = {
+                                @ColumnResult(name = "ma_id", type = Integer.class),
+                                @ColumnResult(name = "ma_name", type = String.class),
+                        }
+                )
+        }
+)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -42,7 +55,7 @@ public class Manufacturer {
 
 
     @OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL
-            , orphanRemoval = true, fetch =FetchType.LAZY)
+            , orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference(value = "manufacturer")
     @ToString.Exclude
     private List<Products> products;

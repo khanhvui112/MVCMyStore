@@ -1,7 +1,6 @@
 package com.sanvui.repository.custom;
-import com.sanvui.model.dto.CategoryDto;
-import com.sanvui.model.dto.resp.CategoryRespDto;
-import com.sanvui.model.entity.Category;
+
+import com.sanvui.model.dto.resp.CategoryResponseDto;
 
 
 import java.io.IOException;
@@ -14,5 +13,5 @@ import java.util.List;
  */
 
 public interface CustomizeCategoryRepository {
-    List<CategoryRespDto> getAllCategoryResp() throws IOException;
+    List<CategoryResponseDto> getAllCategoryResp() throws IOException;
 }

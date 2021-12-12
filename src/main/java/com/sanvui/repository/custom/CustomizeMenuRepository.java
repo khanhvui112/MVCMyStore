@@ -1,6 +1,6 @@
 package com.sanvui.repository.custom;
 
-import com.sanvui.model.dto.resp.MenuRespDto;
+import com.sanvui.model.dto.resp.MenuResponseDto;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,5 +12,5 @@ import java.util.List;
  */
 
 public interface CustomizeMenuRepository {
-    List<MenuRespDto> getAllMenuResp() throws IOException;
+    List<MenuResponseDto> getAllMenuResp() throws IOException;
 }

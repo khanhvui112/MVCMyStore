@@ -11,20 +11,21 @@ import java.util.Optional;
  */
 
 public final class CookieUtil {
-    public static Optional<String>getValueByName(Cookie[] cookies, String name){
+    public static Optional<String> getValueByName(Cookie[] cookies, String name) {
         return Arrays.stream(cookies)
-                .filter(c->c.getName().equals(name))
+                .filter(c -> c.getName().equals(name))
                 .map(Cookie::getValue)
                 .findFirst();
     }
-    public static Cookie getCookieByName(Cookie[] cookies, String name){
-       if(cookies != null){
-           for (Cookie c : cookies){
-               if (c.getName().equals(name)){
-                   return c;
-               }
-           }
-       }
-       return null;
+
+    public static Cookie getCookieByName(Cookie[] cookies, String name) {
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals(name)) {
+                    return c;
+                }
+            }
+        }
+        return null;
     }
 }

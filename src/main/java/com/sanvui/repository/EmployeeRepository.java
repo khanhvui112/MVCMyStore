@@ -4,6 +4,8 @@ import com.sanvui.model.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 
 /**
  * @author: VuiSK
@@ -13,8 +15,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     Employee findByUserNameAndPassword(String userName, String password);
-    Employee findByUserName(String userName);
+
+    Optional<Employee> findByUserName(String userName);
+
     Employee findByEmail(String email);
+
     Employee findByPhone(String phone);
+
     Employee findByTokenActive(String token);
 }

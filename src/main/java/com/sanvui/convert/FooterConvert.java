@@ -29,7 +29,7 @@ public class FooterConvert {
         dto.setFooterName(entity.getFooterName());
         dto.setStatus(entity.getStatus());
         dto.setCreate_Date(entity.getCreate_Date());
-        if(!entity.getFooterDetails().isEmpty()){
+        if (!entity.getFooterDetails().isEmpty()) {
             dto.setFooterDetails(entity.getFooterDetails());
         }
         return dto;

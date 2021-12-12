@@ -21,7 +21,7 @@ public class LoginConvert {
     }
 
     public LoginDTO toDTO(Employee entity) {
-        if(entity==null){
+        if (entity == null) {
             return null;
         }
         LoginDTO dto = new LoginDTO();

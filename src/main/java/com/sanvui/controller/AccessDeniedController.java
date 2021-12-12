@@ -20,7 +20,7 @@ import java.io.IOException;
 public class AccessDeniedController {
 
     @GetMapping("/accessDenied")
-    public String error(){
+    public String error() {
         return "/error/error_access_denied";
     }
 }

@@ -46,7 +46,7 @@ public class Footer {
     }
 
     @OneToMany(mappedBy = "footer", orphanRemoval = true
-            , cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+            , cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference(value = "footerDetails")
     @ToString.Exclude
     private List<FooterDetail> footerDetails;

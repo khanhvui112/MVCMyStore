@@ -13,24 +13,24 @@ public interface BaseDao<T> {
     List<T> findAll();
 
     /*
-    * find by id
-    * param: int id
-    * request: a object
-    * */
+     * find by id
+     * param: int id
+     * request: a object
+     * */
     T findById(int id);
 
     /*
-    * insert to database
-    * param: List<Object>
-    * if success return true else return false
-    */
+     * insert to database
+     * param: List<Object>
+     * if success return true else return false
+     */
     boolean insert(List<T> list);
 
     /*
-    * delete object by id
-    * if success return true else return false
-    *
-    * */
+     * delete object by id
+     * if success return true else return false
+     *
+     * */
     boolean delete(int id);
 
     /*

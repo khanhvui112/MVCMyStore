@@ -17,7 +17,7 @@ class EncyptUtilTest {
 
     @Test
     void hashText() {
-        String ss="$2a$10$py2PLFkrdnOv.29WHBUo5OllPFkuC53Yq5rHqhcPU2k2SjYMG.kqG";
+        String ss = "$2a$10$py2PLFkrdnOv.29WHBUo5OllPFkuC53Yq5rHqhcPU2k2SjYMG.kqG";
         String s = passwordEncoder().encode("Vui@23102000z");
         boolean valuate = BCrypt.checkpw("sankhanh", "$2a$10$py2PLFkrdnOv.29WHBUo5OllPFkuC53Yq5rHqhcPU2k2SjYMG.kqG");
         System.out.println(s.equals(ss));
@@ -25,7 +25,7 @@ class EncyptUtilTest {
         System.out.println(valuate);
     }
 
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

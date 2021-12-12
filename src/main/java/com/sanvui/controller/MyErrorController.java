@@ -19,17 +19,17 @@ import java.util.Objects;
 @Controller
 public class MyErrorController implements ErrorController {
     @RequestMapping({"/error", "/home/error"})
-    public String handleError(HttpServletRequest request){
-        Integer status =(Integer)
+    public String handleError(HttpServletRequest request) {
+        Integer status = (Integer)
                 request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-        if(Objects.nonNull(status)){
-            if(status.equals(HttpStatus.NOT_FOUND.value())){
+        if (Objects.nonNull(status)) {
+            if (status.equals(HttpStatus.NOT_FOUND.value())) {
                 return "error/error";
             }
-            if(status.equals(HttpStatus.FORBIDDEN.value())){
+            if (status.equals(HttpStatus.FORBIDDEN.value())) {
                 return "error/error_access_denied";
             }
-            if(status.equals(HttpStatus.INTERNAL_SERVER_ERROR.value())){
+            if (status.equals(HttpStatus.INTERNAL_SERVER_ERROR.value())) {
                 return "error/error500";
             }
         }

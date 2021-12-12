@@ -1,0 +1,66 @@
+<link rel="stylesheet" type="text/css" href="/assets/css/common/_product.css">
+<th:block th:unless="${#lists.isEmpty(listProducts)}">
+    <section>
+        <div class="container-products">
+            <div class="lts-products">
+                <th:block th:each="item : ${listProducts}">
+                    <div class="item">
+                        <div class="sticker sticker-left">
+                            <span th:text="${item.sale_code}">-2%</span>
+                        </div>
+                        <div class="img">
+                            <a th:href="@{/products-{id}(id=${item.productId})}" th:title="${item.productName}">
+                                <img th:src="${item.imageLink}" th:alt="${item.productName}"
+                                     th:title="${item.productName}">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <a th:href="@{/products-{id}(id=${item.productId})}" class="title"
+                               th:title="${item.productName}" th:text="${item.productName}"></a>
+                            <span class="price">
+
+                                <th:block th:if="${item.sale_code}">
+
+                                      <strike th:text="${item.price}+' ₫ '"> </strike>
+
+                                </th:block>
+
+                                <th:block th:unless="${item.sale_code}">
+
+                                    <strong th:text="${item.price}+' ₫ '"> </strong>
+
+                                </th:block>
+
+                              </span>
+                        </div>
+                        <button th:id="${item.productId}" type="button" class="btn btn-primary">Mua ngay</button>
+                    </div>
+                </th:block>
+            </div>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <th:block th:if="${totalPages > 1}">
+                        <th:block th:each="index: ${#numbers.sequence(0, totalPages - 1)}">
+                            <li class="page-item">
+                                <th:block th:if="${(param.category)}">
+
+                                    <a th:id="'page-'+${index +1}"  class="page-link" th:href="${urlBuilder.replaceQueryParam('page', index+1).toUriString()}"
+                                       th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}"
+                                        th:text="${index + 1}">
+                                    </a>
+                                </th:block>
+                                <th:block th:unless="${(param.category)}">
+                                    <a th:id="'page-'+${index +1}" class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(page=${index}+1)}"
+                                       th:text="${index+1}"></a>
+                                </th:block>
+                            </li>
+                        </th:block>
+                    </th:block>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+</th:block>
+<script src="/assets/js/common/_product.js"></script>

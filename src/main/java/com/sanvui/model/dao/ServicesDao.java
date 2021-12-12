@@ -10,8 +10,12 @@ import java.util.List;
 
 public interface ServicesDao<T> {
     List<T> findAll();
+
     T findById(int id);
+
     boolean insert(List<T> list);
+
     boolean delete(int id);
+
     boolean update(List<T> list);
 }

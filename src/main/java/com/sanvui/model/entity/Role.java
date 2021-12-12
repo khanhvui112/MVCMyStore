@@ -35,12 +35,12 @@ public class Role {
     @Field(termVector = TermVector.YES)
     @Column(name = "role_name", unique = true)
     @NotNull(message = "Role Name can't be null")
-    @Size(min = 3 , max = 100, message = "{name.size}")
+    @Size(min = 3, max = 100, message = "{name.size}")
     private String roleName;
 
     @OneToMany(mappedBy = "role", orphanRemoval = true
             , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference(value = "role" )
+    @JsonManagedReference(value = "role")
     @ToString.Exclude
     private List<EmployeeRole> employeeRoles;
 

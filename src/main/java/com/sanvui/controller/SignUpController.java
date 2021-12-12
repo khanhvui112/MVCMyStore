@@ -18,9 +18,8 @@ public class SignUpController {
 
     @Autowired
     EmployeeServices services;
-
-
-    @GetMapping("/home/signup")
+    
+    @GetMapping("/signup")
     public String login() {
         return "registration";
     }

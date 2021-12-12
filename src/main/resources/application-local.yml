@@ -1,3 +1,9 @@
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        type: trace
+
 spring:
   datasource:
     url: jdbc:sqlserver://localhost:1433;database=MYSTOREMVC
@@ -7,8 +13,14 @@ spring:
 
   jpa:
     show-sql: true
+
     hibernate:
       ddl-auto: update
+
+    open-in-view: false
+    properties:
+      hibernate.search:
+        lucene_version: LATEST
   data:
     cassandra:
       request:
@@ -24,10 +36,15 @@ app:
     product: ${app.file.location}/product
     url-prefix: http://localhost:${server.port}/file
   url-local:
-    url:  http://localhost:${server.port}
+    url: http://localhost:${server.port}
 
   page:
-    size: 3
+    size: 4
+    products:
+      size: 20
+      size10: 10
+    employees:
+      size: 10
 
   mail:
     sender-name: MyStore_Server
@@ -40,9 +57,14 @@ app:
   token:
     time: 5
 #
-#logging:
-#  level:
-#    org:
-#      hibernate:
-#        type : trace
+logging:
+  level:
+    org:
+      hibernate:
+        type :
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        SQL: DEBUG
+
 

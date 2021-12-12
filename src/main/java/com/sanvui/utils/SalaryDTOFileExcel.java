@@ -32,10 +32,10 @@ public class SalaryDTOFileExcel {
             XSSFSheet sheet = workbook.getSheetAt(0);
 
             int countCell = 0;
-            int count= 0;
+            int count = 0;
             Row row1 = sheet.getRow(0);
-            for (Cell cell : row1){
-                if(cell.getCellType() == null){
+            for (Cell cell : row1) {
+                if (cell.getCellType() == null) {
                     break;
                 }
                 countCell++;
@@ -44,10 +44,10 @@ public class SalaryDTOFileExcel {
             int check = 0;
             for (Row r : sheet) {
 
-                if (check > 0){
+                if (check > 0) {
                     salaryDTO = new SalaryDTO();
                     salaryDTO.setFullName(r.getCell(0).getStringCellValue());
-                    salaryDTO.setStartDate( r.getCell(1).getLocalDateTimeCellValue().toLocalDate());
+                    salaryDTO.setStartDate(r.getCell(1).getLocalDateTimeCellValue().toLocalDate());
                     salaryDTO.setEndDate(r.getCell(2).getLocalDateTimeCellValue().toLocalDate());
                     salaryDTO.setSalary(r.getCell(3).getNumericCellValue());
                     salaryDTO.setBonus(r.getCell(4).getNumericCellValue());
@@ -58,13 +58,13 @@ public class SalaryDTOFileExcel {
                 }
                 check = 1;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Read file fail");
-        }finally {
-            if (file != null){
+        } finally {
+            if (file != null) {
                 file.close();
             }
-            if (workbook!=null){
+            if (workbook != null) {
                 workbook.close();
             }
         }

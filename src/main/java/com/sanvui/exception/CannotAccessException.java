@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.FORBIDDEN)
 public class CannotAccessException extends RuntimeException {
 
-    public CannotAccessException(){}
+    public CannotAccessException() {
+    }
 
-    public CannotAccessException(String message){
+    public CannotAccessException(String message) {
         super(message);
     }
 }

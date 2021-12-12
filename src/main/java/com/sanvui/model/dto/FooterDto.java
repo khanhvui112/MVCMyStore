@@ -7,8 +7,8 @@ package com.sanvui.model.dto;
  */
 
 public class FooterDto {
-    private  int footerId;
+    private int footerId;
     private String footerName;
-    private  String footerStatus;
+    private String footerStatus;
 
 }

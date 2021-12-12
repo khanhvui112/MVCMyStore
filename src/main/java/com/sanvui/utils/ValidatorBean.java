@@ -19,10 +19,11 @@ public class ValidatorBean {
         this.messages = messages;
         this.success = true;
     }
-    public ValidatorBean(Set<? extends ConstraintViolation<?>> violations){
+
+    public ValidatorBean(Set<? extends ConstraintViolation<?>> violations) {
         this.success = false;
         this.messages = violations.stream()
-                .map(msg->msg.getMessage())
+                .map(msg -> msg.getMessage())
                 .collect(Collectors.joining("\n "));
     }
 
@@ -44,8 +45,8 @@ public class ValidatorBean {
 
     @Override
     public String toString() {
-        return "Al information validator"+"\n"+" {" +
-                "messages=" + messages +"\t\t" +
+        return "Al information validator" + "\n" + " {" +
+                "messages=" + messages + "\t\t" +
                 ", success=" + success +
                 '}';
     }

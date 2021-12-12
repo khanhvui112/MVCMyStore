@@ -1,10 +1,10 @@
 package com.sanvui.service;
 
-import com.sanvui.model.dto.CategoryDto;
-import com.sanvui.model.dto.resp.CategoryRespDto;
+import com.sanvui.model.dto.resp.CategoryResponseDto;
 import com.sanvui.model.entity.Category;
 import com.sanvui.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,11 +21,12 @@ public class CategoryServices {
     @Autowired
     private CategoryRepository repository;
 
-    public List<Category> findAll(){
+    public List<Category> findAll() {
         return repository.findAll();
     }
 
-    public List<CategoryRespDto> findAllCustom() throws IOException {
+    @Cacheable("categorys")
+    public List<CategoryResponseDto> findAllCustom() throws IOException {
         return repository.getAllCategoryResp();
     }
 }

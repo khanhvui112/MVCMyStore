@@ -1,9 +1,12 @@
 package com.sanvui.repository.custom;
 
-import com.sanvui.model.dto.resp.ProductRespDto;
+import com.sanvui.model.dto.resp.ProductResponseDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: VuiSK
@@ -12,5 +15,11 @@ import java.util.List;
  */
 
 public interface CustomizeProductRepository {
-    List<ProductRespDto> findAllCustom() throws IOException;
+
+    List<ProductResponseDto> findAllCustom() throws IOException;
+
+    Page<ProductResponseDto> findPage(Pageable pageable, Map<String, String> whereClause) throws IOException;
+
+    Page<ProductResponseDto> findTop20CreateDateDesc() throws IOException;
+
 }

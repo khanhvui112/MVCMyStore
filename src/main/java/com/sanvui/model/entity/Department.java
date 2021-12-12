@@ -39,8 +39,8 @@ public class Department {
     private String depName;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY
-            ,orphanRemoval = true)
-    @JsonManagedReference(value = "department" )
+            , orphanRemoval = true)
+    @JsonManagedReference(value = "department")
     @ToString.Exclude
     private List<Employee> employees;
 

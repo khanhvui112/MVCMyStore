@@ -15,13 +15,17 @@ import java.time.LocalDate;
  * @mailto: sanvankhanh@gmail.com
  */
 @ToString
-@Setter @Getter @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "entrytest")
 public class Entrytest {
     @Id
     @Column(name = "en_id")
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int enId;
 
     @NonNull
@@ -47,11 +51,11 @@ public class Entrytest {
     @Size(max = 255, message = "{name.max}")
     private String remark;
 
-//    mapping to Candidate
+    //    mapping to Candidate
     @ManyToOne
     @JoinColumn(name = "ca_id", referencedColumnName = "ca_id"
             , insertable = false, updatable = false)
-    @JsonBackReference(value = "candidates" )
+    @JsonBackReference(value = "candidates")
     @ToString.Exclude
     private Candidates candidates;
 }

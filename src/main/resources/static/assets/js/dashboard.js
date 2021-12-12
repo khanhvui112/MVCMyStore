@@ -9,37 +9,37 @@ $(document).ready(function () {
     $(".user-profile").on("click", function () {
         $(".dropdown-usermenu").toggle();
     })
-    $("#menu_toggle").on('click', function (){
+    $("#menu_toggle").on('click', function () {
         $("#menu-left").slideToggle('slow');
     });
 
-    $("#navbarDropdown1").on('click', function (){
+    $("#navbarDropdown1").on('click', function () {
         $("#notication").toggle();
     });
     $("#all-employee").on('click', function () {
-        const url = '/admin/api-employee/findAll'
-        $.ajax({
-            url: url,
-            type: 'GET',
-            success: function (data) {
-                let parsedData = JSON.parse(JSON.stringify(data));
-                bindingDataEmployee(parsedData);
-            },
-            error: function(){
-                window.location = "/accessDenied";
-            }
-        });
+
+        $("#table-append").toggle();
+        drawEmployee(0);
+        $(".add-product-container").empty();
     });
     $("#add-product").on('click', function () {
-        createProduct()
+        $("#table-append").hide();
+        createProduct();
     });
-    $(document).on('click', '#btn-product-add', function() {
+    $(document).on('click', '#btn-product-add', function () {
         appendForm();
     });
-    $(document).on('click', '#btn-product-save', function() {
-        getDataForm();
+
+    $(document).on('click', '.first', function () {
+        drawEmployee(Number($(this).val()) - 1);
     });
-    $(document).on('click', '#btn-product-save', function() {
+
+    $(document).on('click', '#btn-product-save', function () {
+
+        $(document).ajaxSend(function () {
+            $("#overlay").fadeIn(300);
+        });
+
         let products = getDataForm();
 
         $.ajax({
@@ -48,30 +48,86 @@ $(document).ready(function () {
             processData: false, // tell jQuery not to process the data
             contentType: false, // tell jQuery not to set contentType
             cache: false,
-            url:'/api/v1/products',
-            data:products,
-            success:function(data){
-                let parsedData = JSON.parse(JSON.stringify(data));
-                if(parsedData.status === 'true'){
+            url: '/api/v1/products',
+            data: products,
+            success: function (data) {
 
-                }else {
-
-                }
 
             },
-            fail: function(){
+            fail: function () {
                 alert("Danng ky that bai!");
             }
+        }).done(function (data) {
+            $("#overlay").fadeOut(100);
+            if (data.success === false) {
+                $('.add-product-container span').text('Thêm sản phẩm thất bại. Đã xảy ra lỗi')
+            } else {
+                $('.add-product-container span').text('Thêm sản phẩm thành công')
+                $('#form-template').trigger("reset");
+            }
+
         });
     });
 
 
 })
+
+function Pagination(totalPage) {
+    //TODO: Pagination
+    const body = $(".pagination");
+    body.empty();
+
+    for (let i = 0; i < totalPage; i++) {
+        if (i === 0) {
+            body.append(`
+            <li class="page-item">
+                <input type="button" class="page-link first" value="${i + 1}"/>
+            </li>
+        `);
+        } else {
+            body.append
+            (`
+               <li class="page-item">
+                <input type="button" class="page-link first" value="${i + 1}"/>
+               </li>
+            `);
+        }
+
+
+    }
+}
+
+function drawEmployee(page) {
+    const url = '/admin/api-employee/find-all?page=' + page;
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function (data) {
+            if (data.success === true) {
+                let page = data.data;
+                Pagination(page.totalPages);
+                bindingDataEmployee(data);
+            } else {
+                alert("Đã xảy ra lỗi vui lòng thử lại")
+            }
+
+        },
+        error: function () {
+            window.location = "/accessDenied";
+        }
+    }).done(function () {
+        setTimeout(function () {
+            $("#overlay").fadeOut(300);
+        }, 100);
+    });
+}
+
 async function getDataSelect(url) {
     const response = await fetch(url);
     return await response.json();
 }
-function getDataForm(){
+
+function getDataForm() {
     let data = new FormData();
     let image = $("input[name='imageLink']")[0].files[0];
     data.append('image_Link', image);
@@ -88,19 +144,23 @@ function getDataForm(){
 }
 
 async function getCategory() {
-    const url = '/api/v1/category/find-all';
+    const url = '/api/v1/categorys';
     const response = await fetch(url);
     return await response.json();
 }
+
 function appendForm() {
-  $('#form-template').clone().appendTo("#product-padding");
+    $('#form-template').clone().appendTo("#product-padding");
 }
+
 function createProduct() {
-    $(".right_col").empty().append(
+    $(".right_col .row .container").empty();
+    $(".right_col .row").append(
         `
-        <div class="container">
+        <div class="container add-product-container">
 
           <h4 class="mb-3 text-center">THÊM SẢN PHẨM</h4>
+          <span id="notication-add-product" style="color:red; text-align: center; display: block;"></span>
       <div >
          <div class="col align-self-center" id="product-padding">
          <form class="needs-validation" id="form-template" novalidate="">
@@ -137,38 +197,39 @@ function createProduct() {
                 <label for="country">Danh mục</label>
                 <select class="custom-select d-block w-100 category-select" name="ca_id" id="category" required="">
                   <option value="">Chọn...</option>
-                `+
-                    getCategory().then(c=>{
-                        c.forEach(function(cate){
-                            $(".category-select").append(`<option value="${cate.caId}">${cate.caName}</option>`)
-                        })
-                    })
-                +`
+                ` +
+        getCategory().then(c => {
+            c.data.forEach(function (cate) {
+                $(".category-select").append(`<option value="${cate.caId}">${cate.caName}</option>`)
+            })
+
+        })
+        + `
                 </select>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="state">Màu sắc</label>
                 <select class="custom-select d-block w-100 color-select" name="color_id" id="color" required="">
                   <option value="">Chọn...</option>
-                  `+
-                    getDataSelect('/api/v1/color/find-all').then(c=>{
-                        c.forEach(function(d){
-                            $(".color-select").append(`<option value="${d.colorId}">${d.colorName}</option>`)
-                        })
-                    })
-                +`
+                  ` +
+        getDataSelect('/api/v1/colors').then(c => {
+            c.data.forEach(function (d) {
+                $(".color-select").append(`<option value="${d.colorId}">${d.colorName}</option>`)
+            })
+        })
+        + `
                 </select>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="state">Nhà sản xuất</label>
                 <select class="custom-select d-block w-100 manufacturer-select" name="ma_id" id="manufacturer" required="">
-                  <option value="">Chọn...</option>`+
-                        getDataSelect('/api/v1/manufacturer/find-all').then(c=>{
-                            c.forEach(function(d){
-                                $(".manufacturer-select").append(`<option value="${d.maId}">${d.maName}</option>`)
-                            })
-                        })
-                  +`
+                  <option value="">Chọn...</option>` +
+        getDataSelect('/api/v1/manufacturers').then(c => {
+            c.data.forEach(function (d) {
+                $(".manufacturer-select").append(`<option value="${d.maId}">${d.maName}</option>`)
+            })
+        })
+        + `
                 </select>
               </div>
             </div>
@@ -178,21 +239,21 @@ function createProduct() {
                 <label for="country">Chi tiết sản phẩm</label>
                 <select class="custom-select d-block w-100 product-detail-select" id="product_detail_id" name="product_detail_id" required="">
                   <option value="">Chọn...</option>
-                 `+
-                        getDataSelect('/api/v1/product-detail/find-all').then(c=>{
-                            c.forEach(function(d){
-                                $(".product-detail-select")
-                                    .append(`
+                 ` +
+        getDataSelect('/api/v1/product-details').then(c => {
+            c.data.forEach(function (d) {
+                $(".product-detail-select")
+                    .append(`
                                     <option value="${d.productDetailId}">
                                     ${d.screenTechnology !== null ? d.screenTechnology : ``} 
-                                    ${d.resolution!== null ?  (`, `+ d.resolution) : ''}
-                                    ${d.operatingSystem!== null?  (`, `+ d.operatingSystem) : ``} 
-                                    ${d.mobileNetwork !== null?  (`, `+ d.mobileNetwork)  : ``}  
-                                    ${d.manufactureOfDate !== null ? (`, `+ d.manufactureOfDate) : ``}
+                                    ${d.resolution !== null ? (`, ` + d.resolution) : ''}
+                                    ${d.operatingSystem !== null ? (`, ` + d.operatingSystem) : ``} 
+                                    ${d.mobileNetwork !== null ? (`, ` + d.mobileNetwork) : ``}  
+                                    ${d.manufactureOfDate !== null ? (`, ` + d.manufactureOfDate) : ``}
                                     </option>`)
-                            })
-                        })
-                  +`
+            })
+        })
+        + `
                 </select>
               </div>
               <div class="col-md-4 mb-3">
@@ -213,6 +274,7 @@ function createProduct() {
         `
     )
 }
+
 function bindingSelect(data) {
     data.forEach(function (d) {
         `<option value="${d.caId}">${d.caName}</option>">`
@@ -220,9 +282,10 @@ function bindingSelect(data) {
 }
 
 function bindingDataEmployee(data) {
-    showTable();
+    data = data.data;
     $('#datatable tbody').empty();
-    data.forEach(function (employee, index) {
+    data = data.content
+    data.forEach(function (employee) {
         $('#datatable tbody').append(
             `<tr id="employee-${employee.empId}">
                <td class="td-firstName" id="firstName">${employee.firstName}</td>
@@ -243,10 +306,9 @@ function bindingDataEmployee(data) {
                </td>
             </tr>`
         );
+
     });
 
+
 }
 
-function showTable() {
-    $("#datatable").toggle();
-}

@@ -86,14 +86,14 @@ public class Orders {
     @ManyToOne
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id"
             , insertable = false, updatable = false)
-    @JsonBackReference(value = "order" )
+    @JsonBackReference(value = "order")
     @ToString.Exclude
     private Employee employee;
 
     //    Mapper to OrderDetail
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL
             , fetch = FetchType.LAZY, orphanRemoval = true)
-    @JsonManagedReference(value = "orderDetails" )
+    @JsonManagedReference(value = "orderDetails")
     @ToString.Exclude
     private List<OrderDetails> orderDetails;
 
@@ -101,14 +101,14 @@ public class Orders {
     @ManyToOne
     @JoinColumn(name = "discount_code", referencedColumnName = "discount_code"
             , insertable = false, updatable = false)
-    @JsonBackReference(value = "discount" )
+    @JsonBackReference(value = "discount")
     @ToString.Exclude
     private Discount discount;
 
     //    Mapper to OrderDetail
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL
             , fetch = FetchType.LAZY, orphanRemoval = true)
-    @JsonManagedReference(value = "paymentDetails" )
+    @JsonManagedReference(value = "paymentDetails")
     @ToString.Exclude
     private List<Payment> paymentDetails;
 

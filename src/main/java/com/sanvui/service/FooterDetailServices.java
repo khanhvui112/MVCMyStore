@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 public class FooterDetailServices {
-    public static boolean inserts(List<FooterDetail> footerDetails){
+    public static boolean inserts(List<FooterDetail> footerDetails) {
         BaseDaoImp imp = new BaseDaoImp(FooterDetail.class);
         return imp.insert(footerDetails);
     }

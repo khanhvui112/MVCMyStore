@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  */
 
 public class JobServices {
-    private static LocalDate localDate(String s){
+    private static LocalDate localDate(String s) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/M/yyyy");
         LocalDate date = LocalDate.parse(s, formatter);
         return date;

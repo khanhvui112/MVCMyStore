@@ -1,11 +1,12 @@
 DelayRedirect();
+
 function DelayRedirect() {
     let seconds = 5;
     let timecount = document.getElementById("timecount");
     timecount.innerHTML = seconds;
     setInterval(function () {
         seconds--;
-        if(seconds > 0){
+        if (seconds > 0) {
             timecount.innerHTML = seconds;
         }
         if (seconds == 0) {

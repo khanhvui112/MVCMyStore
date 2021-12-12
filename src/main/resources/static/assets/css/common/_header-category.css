@@ -1,0 +1,38 @@
+/*CSS section product */
+.header_main {
+    padding-top: 1%;
+    margin: 0;
+    color: #FFFFFF;
+    border-bottom-right-radius: 50px;
+}
+
+.header_main > div {
+
+    border-radius: 50px;
+    background-color: #00aeef;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.header_main div ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.main-menu li a {
+    color: unset;
+}
+
+.main-menu li {
+    padding: 0.5% 0;
+    cursor: pointer;
+}
+
+.main-menu li:hover {
+    background-color: cornsilk;
+    color: darkcyan;
+    border-radius: 5px;
+}

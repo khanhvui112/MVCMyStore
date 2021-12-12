@@ -26,12 +26,12 @@ import java.util.List;
 public class EmployeeDaoImp implements EmployeeDao {
 
     /*
-    * Query List  Employee salary
-    * if insert success list SalaryDTOS
-    * else return NULL
-    * param: List<Employee>
-    * request : true or false
-    */
+     * Query List  Employee salary
+     * if insert success list SalaryDTOS
+     * else return NULL
+     * param: List<Employee>
+     * request : true or false
+     */
     @Override
     public List<SalaryDTO> salaryDtoList() {
         try (Session session = HibernateUtils.getSession()) {
@@ -53,7 +53,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             SalaryDTO salaryDTO;
 
 //            add data to List salaryDTOS
-            while(itr.hasNext()){
+            while (itr.hasNext()) {
                 Object[] obj = (Object[]) itr.next();
                 //now you have one array of Object for each row
                 String fullName = String.valueOf(obj[0]);
@@ -72,7 +72,7 @@ public class EmployeeDaoImp implements EmployeeDao {
                 salaryDTOS.add(salaryDTO);
             }
             return salaryDTOS;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Get salaryDTO fail.");
             return null;
         }
@@ -105,7 +105,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             Predicate predicate1 = criteriaBuilder.notEqual(join.get("depName"), "user");
 
             query.select(root).where(predicate, predicate1);
-                Query query1 = session.createQuery(query);
+            Query query1 = session.createQuery(query);
             return query1.getResultList();
         }
     }
@@ -119,21 +119,21 @@ public class EmployeeDaoImp implements EmployeeDao {
      */
     @Override
     public boolean insertUser(Employee employee) {
-        try (Session session = HibernateUtils.getSession()){
+        try (Session session = HibernateUtils.getSession()) {
             Transaction transaction = session.beginTransaction();
             Query sql = session.createSQLQuery(
                     "INSERT INTO dbo.Employee(address,email,first_Name,last_Name,password,phone,user_Name,date_Of_Birth, gender )" +
                             "VALUES(? ,? , ?, ?, ?, ?, ?, ?, ?)"
             );
-            sql.setParameter(1,employee.getAddress());
-            sql.setParameter(2,employee.getEmail());
-            sql.setParameter(3,employee.getFirstName());
-            sql.setParameter(4,employee.getLastName());
-            sql.setParameter(5,employee.getPassword());
-            sql.setParameter(6,employee.getPhone());
-            sql.setParameter(7,employee.getUserName());
-            sql.setParameter(8,employee.getDateOfBirth());
-            sql.setParameter(9,employee.getGender());
+            sql.setParameter(1, employee.getAddress());
+            sql.setParameter(2, employee.getEmail());
+            sql.setParameter(3, employee.getFirstName());
+            sql.setParameter(4, employee.getLastName());
+            sql.setParameter(5, employee.getPassword());
+            sql.setParameter(6, employee.getPhone());
+            sql.setParameter(7, employee.getUserName());
+            sql.setParameter(8, employee.getDateOfBirth());
+            sql.setParameter(9, employee.getGender());
             int id = sql.executeUpdate();
             transaction.commit();
             return id > 0;
@@ -142,36 +142,36 @@ public class EmployeeDaoImp implements EmployeeDao {
 
     @Override
     public boolean findEmployeeByName(String username) {
-        try (Session session = HibernateUtils.getSession()){
-            Query query=session.createQuery(" SELECT empId FROM Employee " +
+        try (Session session = HibernateUtils.getSession()) {
+            Query query = session.createQuery(" SELECT empId FROM Employee " +
                     " WHERE userName =: username ");
             query.setParameter("username", username);
-            return (Integer)query.getSingleResult() > 0;
-        }catch(Exception e){
+            return (Integer) query.getSingleResult() > 0;
+        } catch (Exception e) {
             return false;
         }
     }
 
     @Override
     public boolean findEmployeeByEmail(String email) {
-        try (Session session = HibernateUtils.getSession()){
-            Query query=session.createQuery(" SELECT empId FROM Employee " +
+        try (Session session = HibernateUtils.getSession()) {
+            Query query = session.createQuery(" SELECT empId FROM Employee " +
                     " WHERE email =: email ");
             query.setParameter("email", email);
-            return (Integer)query.getSingleResult() > 0;
-        }catch(Exception e){
+            return (Integer) query.getSingleResult() > 0;
+        } catch (Exception e) {
             return false;
         }
     }
 
     @Override
     public boolean findEmployeeByPhone(String phone) {
-        try (Session session = HibernateUtils.getSession()){
-            Query query=session.createQuery(" SELECT empId FROM Employee " +
+        try (Session session = HibernateUtils.getSession()) {
+            Query query = session.createQuery(" SELECT empId FROM Employee " +
                     " WHERE phone =: phone ");
             query.setParameter("phone", phone);
-            return (Integer)query.getSingleResult() > 0;
-        }catch(Exception e){
+            return (Integer) query.getSingleResult() > 0;
+        } catch (Exception e) {
             return false;
         }
     }

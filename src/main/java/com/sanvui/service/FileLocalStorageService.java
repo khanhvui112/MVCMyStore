@@ -15,6 +15,8 @@ import java.net.MalformedURLException;
 
 public interface FileLocalStorageService {
     String saveFile(MultipartFile file, String folderUser) throws IOException;
+
     Resource loadFileAsResource(String filePath) throws MalformedURLException, FileNotFoundException;
+
     String buildUrl(String fileName);
 }

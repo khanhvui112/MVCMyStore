@@ -41,7 +41,7 @@ public class Avatar extends HttpServlet {
     @OneToOne
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id"
             , updatable = false, insertable = false)
-    @JsonManagedReference(value = "avatar" )
+    @JsonManagedReference(value = "avatar")
     @ToString.Exclude
     private Employee employee;
 

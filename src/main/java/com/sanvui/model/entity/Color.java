@@ -1,7 +1,7 @@
 package com.sanvui.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sanvui.model.dto.resp.ColorResponseDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,6 +13,19 @@ import java.util.List;
  * @created: 06/11/2021-8:51 AM
  * @mailto: sanvankhanh@gmail.com
  */
+
+@SqlResultSetMapping(
+        name = "colorCustomResultMapping",
+        classes = {
+                @ConstructorResult(
+                        targetClass = ColorResponseDto.class,
+                        columns = {
+                                @ColumnResult(name = "color_id", type = Integer.class),
+                                @ColumnResult(name = "color_name", type = String.class),
+                        }
+                )
+        }
+)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,7 +35,7 @@ import java.util.List;
 @Table(name = "color")
 public class Color {
     @Id
-    @Column(name="color_id")
+    @Column(name = "color_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int colorId;
 
@@ -32,7 +45,7 @@ public class Color {
 
     @OneToMany(mappedBy = "color", cascade = CascadeType.ALL
             , orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference(value="color")
+    @JsonManagedReference(value = "color")
     @ToString.Exclude
     private List<Products> productsList;
 

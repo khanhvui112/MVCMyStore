@@ -11,7 +11,9 @@
         <title>My Store</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
         <!--===============================================================================================-->
         <link rel="icon" type="image/png" href="/assets/images/icons/favicon.ico"/>
         <!--===============================================================================================-->
@@ -35,25 +37,36 @@
         <!--===============================================================================================-->
     </head>
     <body>
-        <th:block th:insert="common/_header" />
+        <th:block th:insert="common/_header"/>
+        <!--end header-->
+
+        <!--show product search -->
+        <th:block th:insert="common/_search-product"/>
+
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-                    <form class="login100-form validate-form" method="post" th:action="@{/j_spring_security_check}" th:object="${accountDto}">
+                    <form class="login100-form validate-form" method="post" th:action="@{login}"
+                          th:object="${accountDto}">
 					<span style="font-family: ui-serif;" class="login100-form-title p-b-49">
 						Đăng nhập
 
 					</span>
-                        <p class="showError" style="color: red;" th:text="${session.error}"></p>
-                        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-                            <span class="label-input100">Tên tài khoản<span style="color:red;" class="spanUsername"></span></span>
-                            <input name="username" class="input100 username" id="username" type="text"  placeholder="Type your username">
+                        <th:block  th:if="${param.error}">
+                            <p class="showError" style="color: red;">Đăng nhập thất bại! </p>
+                        </th:block>
+                        <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                            <span class="label-input100">Tên tài khoản<span style="color:red;"
+                                                                            class="spanUsername"></span></span>
+                            <input name="username" class="input100 username" id="username" type="text"
+                                   placeholder="Type your username">
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Password is required">
                             <span class="label-input100">Mật khẩu</span>
-                            <input name="password" class="input100 password" id="password" type="password"  placeholder="Type your password">
+                            <input name="password" class="input100 password" id="password" type="password"
+                                   placeholder="Type your password">
                             <span class="focus-input100" data-symbol="&#xf190;"></span>
                         </div>
 
@@ -76,10 +89,10 @@
                         <div class="txt1 text-center p-t-20 p-b-20">
                             <div class="flex-col-c p-20">
                                 <p class="loginhere">
-                                    Bạn chưa có tài khoản ? <a href="./signup" class="loginhere-link">Đăng ký</a>
+                                    Bạn chưa có tài khoản ? <a href="/signup" class="loginhere-link">Đăng ký</a>
                                 </p>
                             </div>
-						<span>
+                            <span>
 							Đăng nhập với
 						</span>
                         </div>
@@ -103,7 +116,7 @@
             </div>
         </div>
 
-        <th:block th:insert="common/_footer" />
+        <th:block th:insert="common/_footer"/>
 
         <!--===============================================================================================-->
         <script src="/assets/vendor/jquery/jquery-3.2.1.min.js"></script>

@@ -48,7 +48,7 @@ public class OrderDetails {
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "order_id"
             , insertable = false, updatable = false)
-    @JsonBackReference(value = "orderDetails" )
+    @JsonBackReference(value = "orderDetails")
     @ToString.Exclude
     private Orders orders;
 
@@ -56,7 +56,7 @@ public class OrderDetails {
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id"
             , insertable = false, updatable = false)
-    @JsonBackReference(value="orderDetailsList")
+    @JsonBackReference(value = "orderDetailsList")
     @ToString.Exclude
     private Products product;
 

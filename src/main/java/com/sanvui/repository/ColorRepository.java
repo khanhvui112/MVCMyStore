@@ -1,6 +1,7 @@
 package com.sanvui.repository;
 
 import com.sanvui.model.entity.Color;
+import com.sanvui.repository.custom.CustomizeColorRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +11,6 @@ import org.springframework.stereotype.Repository;
  * @mailto: sanvankhanh@gmail.com
  */
 @Repository
-public interface ColorRepository extends JpaRepository<Color, Integer> {
+public interface ColorRepository extends JpaRepository<Color, Integer>
+        , CustomizeColorRepository {
 }

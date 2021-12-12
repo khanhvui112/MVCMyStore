@@ -17,7 +17,11 @@ import javax.validation.constraints.Size;
  * @created: 07/11/2021-1:05 PM
  * @mailto: sanvankhanh@gmail.com
  */
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Indexed
 @ToString
@@ -55,11 +59,11 @@ public class Payment {
     @Pattern(regexp = "^(paid|not paid|Đã thanh toán|Chưa thanh toán)$", message = "{value.accept}")
     private String status;
 
-//    mapping to Employee by emp_Id
+    //    mapping to Employee by emp_Id
     @ManyToOne
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id"
             , updatable = false, insertable = false)
-    @JsonBackReference(value = "payment" )
+    @JsonBackReference(value = "payment")
     @ToString.Exclude
     private Employee employee;
 
@@ -67,7 +71,7 @@ public class Payment {
     @ManyToOne(optional = false)
     @JoinColumn(name = "order_id", referencedColumnName = "order_id"
             , updatable = false, insertable = false)
-    @JsonBackReference(value = "paymentDetails" )
+    @JsonBackReference(value = "paymentDetails")
     @ToString.Exclude
     private Orders orders;
 }

@@ -38,7 +38,7 @@ public class GmailServiceImpl implements EmailService {
     @Override
     public void sendMail(MailParamDto mailParamDto) throws MessagingException, UnsupportedEncodingException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true,"UTF-8");
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
         mimeMessageHelper.setFrom(mailPropertie.getSenderEmail()
                 , mailPropertie.getSenderName());
@@ -48,21 +48,21 @@ public class GmailServiceImpl implements EmailService {
         mimeMessage.setContent(mailParamDto.getContent(), "text/html; charset=UTF-8");
 
         FileSystemResource resource = null;
-        if(mailParamDto.getFileName() != null){
+        if (mailParamDto.getFileName() != null) {
             resource = new FileSystemResource(
-                    fileLocation+mailParamDto.getFileName());
+                    fileLocation + mailParamDto.getFileName());
         }
 
-        if(resource != null){
+        if (resource != null) {
             mimeMessageHelper.addAttachment(getFileName(mailParamDto.getFileName()), resource);
         }
 
 //        TODO: check cc and bcc is empty
-        if(ArrayUtils.isNotEmpty(mailParamDto.getCcList())){
+        if (ArrayUtils.isNotEmpty(mailParamDto.getCcList())) {
             mimeMessageHelper.setCc(mailParamDto.getCcList());
         }
 
-        if(ArrayUtils.isNotEmpty(mailParamDto.getBccList())){
+        if (ArrayUtils.isNotEmpty(mailParamDto.getBccList())) {
             mimeMessageHelper.setBcc(mailParamDto.getBccList());
         }
 
@@ -70,7 +70,7 @@ public class GmailServiceImpl implements EmailService {
 
     }
 
-    private String getFileName(String fileLocation){
+    private String getFileName(String fileLocation) {
         return fileLocation.substring(fileLocation.indexOf("/"));
     }
 }

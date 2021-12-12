@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>My Store - Home</title>
+        <title>My Store - Trang chủ</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,13 +37,11 @@
 
         <!--end header-->
 
-        <div class="header_main">
-            <div>
-                <ul class="main-menu">
+        <!--show product search -->
+        <th:block th:insert="common/_search-product"/>
 
-                </ul>
-            </div>
-        </div>
+        <!--show category menu -->
+        <th:block th:insert="common/_header-category"/>
 
         <!--start container-->
         <div class="content">
@@ -75,7 +73,6 @@
 
         <!--    start footer -->
         <th:block th:insert="common/_footer"/>
-
         <!--    end footer -->
         <script src="https://code.jquery.com/jquery-3.6.0.js"
                 integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

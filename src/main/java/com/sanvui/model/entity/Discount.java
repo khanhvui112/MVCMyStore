@@ -17,7 +17,11 @@ import java.util.List;
  * @mailto: sanvankhanh@gmail.com
  */
 @ValidAfterDate
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @ToString
 @Table(name = "discount")
@@ -41,7 +45,7 @@ public class Discount {
     private int discountMaxPrice;
 
     @NonNull
-    @Column(name = "start_date",nullable = false)
+    @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
     @NonNull
@@ -50,15 +54,15 @@ public class Discount {
 
     @NonNull
     @NotNull
-    @Column(name = "status",columnDefinition = "nvarchar(30) check(status='success' or status='repay' " +
+    @Column(name = "status", columnDefinition = "nvarchar(30) check(status='success' or status='repay' " +
             "or status='pending' or status='shipping')")
-    @Pattern(regexp = "^(ready|too limit|error|used)$",message = "{payment.status.valid}")
+    @Pattern(regexp = "^(ready|too limit|error|used)$", message = "{payment.status.valid}")
     private String status;
 
-//    Mapper to Orders
-    @OneToMany(mappedBy = "discount",orphanRemoval = true
+    //    Mapper to Orders
+    @OneToMany(mappedBy = "discount", orphanRemoval = true
             , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference(value = "discount" )
+    @JsonManagedReference(value = "discount")
     @ToString.Exclude
     private List<Orders> orders;
 

@@ -85,11 +85,10 @@ public class ProductDetail {
 
     //    Mapping to Products
     @OneToMany(mappedBy = "productDetail", cascade = CascadeType.ALL
-            , fetch = FetchType.LAZY,orphanRemoval = true)
-    @JsonManagedReference(value="productDetail")
+            , fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonManagedReference(value = "productDetail")
     @ToString.Exclude
     private List<Products> productsList;
-
 
 
 }

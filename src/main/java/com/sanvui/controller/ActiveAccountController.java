@@ -34,7 +34,7 @@ public class ActiveAccountController {
     public String activeAccount(@RequestParam("active-token") String activeToken
             , Model model) {
 
-        String tokenSub =activeToken.replaceAll(" ","+");
+        String tokenSub = activeToken.replaceAll(" ", "+");
 
         return employeeServices.activeAccount(tokenSub, model);
     }

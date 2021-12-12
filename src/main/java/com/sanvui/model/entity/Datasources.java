@@ -10,7 +10,10 @@ import lombok.Setter;
  * @created: 03/11/2021-9:11 PM
  * @mailto: sanvankhanh@gmail.com
  */
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Datasources {
     private String userName;
     private String password;

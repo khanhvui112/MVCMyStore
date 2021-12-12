@@ -1,9 +1,7 @@
 package com.sanvui.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sanvui.model.dto.CategoryDto;
-import com.sanvui.model.dto.resp.CategoryRespDto;
+import com.sanvui.model.dto.resp.CategoryResponseDto;
 import lombok.*;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
@@ -24,7 +22,7 @@ import java.util.List;
         name = "categoryCustomResultMapping",
         classes = {
                 @ConstructorResult(
-                        targetClass = CategoryRespDto.class,
+                        targetClass = CategoryResponseDto.class,
                         columns = {
                                 @ColumnResult(name = "ca_id", type = Integer.class),
                                 @ColumnResult(name = "ca_name", type = String.class),

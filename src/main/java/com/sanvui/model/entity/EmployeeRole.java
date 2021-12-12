@@ -33,14 +33,14 @@ public class EmployeeRole {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id"
             , insertable = false, updatable = false, nullable = false)
-    @JsonBackReference(value = "employeeRoles" )
+    @JsonBackReference(value = "employeeRoles")
     @ToString.Exclude
     private Employee employee;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_code", referencedColumnName = "role_code"
             , insertable = false, updatable = false, nullable = false)
-    @JsonBackReference(value = "role" )
+    @JsonBackReference(value = "role")
     @ToString.Exclude
     private Role role;
 

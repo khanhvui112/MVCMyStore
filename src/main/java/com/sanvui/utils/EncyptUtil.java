@@ -38,7 +38,8 @@ public final class EncyptUtil {
         assert hashText != null;
         return hashText.toString();
     }
-    public static PasswordEncoder passwordEncoder(){
+
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

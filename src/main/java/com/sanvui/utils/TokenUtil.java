@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 
 public final class TokenUtil {
 
-    public static String genericActiveToken(Employee employee, String key, int time){
+    public static String genericActiveToken(Employee employee, String key, int time) {
         LocalDateTime dateTime = LocalDateTime.now();
         dateTime = dateTime.plusMinutes(time);
-        return AES.encrypt(EncyptUtil.passwordEncoder().encode(employee.getUserName()+employee.getEmail())+"time"+dateTime, key);
+        return AES.encrypt(EncyptUtil.passwordEncoder().encode(employee.getUserName() + employee.getEmail()) + "time" + dateTime, key);
     }
 }

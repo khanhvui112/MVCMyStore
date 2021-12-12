@@ -13,14 +13,14 @@ import java.util.Set;
  */
 
 public class ValidatorUtils {
-    public static ValidatorBean validatorBean(Object o){
+    public static ValidatorBean validatorBean(Object o) {
 //           CREATE VALIDATION FACTORY
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-        Set<ConstraintViolation<Object>> violations= validator.validate(o);
-        if (violations.isEmpty()){
+        Set<ConstraintViolation<Object>> violations = validator.validate(o);
+        if (violations.isEmpty()) {
             return new ValidatorBean("Your bean is OK");
-        }else {
+        } else {
             return new ValidatorBean(violations);
         }
     }

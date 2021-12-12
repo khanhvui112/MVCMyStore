@@ -17,7 +17,11 @@ import java.time.LocalDateTime;
  * @mailto: sanvankhanh@gmail.com
  */
 @ToString
-@Getter @Setter @AllArgsConstructor @RequiredArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "rates")
 public class Rates {
@@ -50,14 +54,14 @@ public class Rates {
     private String status;
 
     @NonNull
-    @Column(name = "date", columnDefinition = "datetime",nullable = false)
+    @Column(name = "date", columnDefinition = "datetime", nullable = false)
     private LocalDateTime date;
 
-//    mapping to Employee
+    //    mapping to Employee
     @ManyToOne(optional = false)
     @JoinColumn(name = "emp_id", columnDefinition = "emp_id"
             , insertable = false, updatable = false)
-    @JsonBackReference(value = "rate" )
+    @JsonBackReference(value = "rate")
     @ToString.Exclude
     private Employee employee;
 
@@ -65,7 +69,7 @@ public class Rates {
     @ManyToOne(optional = false)
     @JoinColumn(name = "product_id", columnDefinition = "product_id"
             , insertable = false, updatable = false)
-    @JsonBackReference(value="jtoproduct")
+    @JsonBackReference(value = "jtoproduct")
     @ToString.Exclude
     private Products product;
 

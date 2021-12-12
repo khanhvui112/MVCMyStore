@@ -3,6 +3,7 @@ package com.sanvui.service;
 import com.sanvui.model.entity.ProductDetail;
 import com.sanvui.repository.ProductDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,8 @@ public class ProductDetailService {
     @Autowired
     private ProductDetailRepository detailRepository;
 
-    public List<ProductDetail> findAll(){
+    @Cacheable("productDetails")
+    public List<ProductDetail> findAll() {
         return detailRepository.findAll(Sort.by("productDetailId").ascending());
     }
 }

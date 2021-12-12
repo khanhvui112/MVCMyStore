@@ -15,20 +15,18 @@ import java.util.List;
  */
 
 public interface CategoryRepository extends JpaRepository<Category, Integer>
-        , CustomizeCategoryRepository
-       {
+        , CustomizeCategoryRepository {
 
-//    JPQL
-    @Query( value = "FROM Category WHERE caName=:name ")
+    //    JPQL
+    @Query(value = "FROM Category WHERE caName=:name ")
     List<Category> findAll(@Param("name") String name);
 
 
-
-   /*
-    * SQL Query
-    *
-    * */
-    @Query( value = "SELECT * FROM category ", nativeQuery = true)
+    /*
+     * SQL Query
+     *
+     * */
+    @Query(value = "SELECT * FROM category ", nativeQuery = true)
     List<Category> findAllSql();
 
 }

@@ -23,10 +23,10 @@ public class ContactStore {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int contactId;
 
-    @Column(name = "facebook",columnDefinition = "varchar(255)")
+    @Column(name = "facebook", columnDefinition = "varchar(255)")
     @NotNull(message = "{contact_store.facebook.null}")
-    @URL(regexp ="(?:(?:http|https):\\/\\/)?(?:www.)?facebook.com\\/(?:(?:\\w)*#!\\/)?(?:pages\\/)?(?:[?\\w\\-]*\\/)?(?:profile.php\\?id=(?=\\d.*))?([\\w\\-]*)?"
-            ,message = "{contact_store.facebook.link}")
+    @URL(regexp = "(?:(?:http|https):\\/\\/)?(?:www.)?facebook.com\\/(?:(?:\\w)*#!\\/)?(?:pages\\/)?(?:[?\\w\\-]*\\/)?(?:profile.php\\?id=(?=\\d.*))?([\\w\\-]*)?"
+            , message = "{contact_store.facebook.link}")
     private String facebook;
 
     @Column(name = "phone", columnDefinition = "varchar(12)")
@@ -34,7 +34,7 @@ public class ContactStore {
     @Pattern(regexp = "^[0]\\d{9}$", message = "{phone.valid}")
     private String phone;
 
-    @Column(name = "email",columnDefinition = "varchar(100)")
+    @Column(name = "email", columnDefinition = "varchar(100)")
     @Email(message = "{contact_store.email.valid}")
     @NotNull(message = "{contact_store.email.null}")
     private String email;
@@ -50,7 +50,7 @@ public class ContactStore {
     @URL(message = "{contact_store.twitter.regex}")
     private String twitter;
 
-    @Column(name = "status",columnDefinition = "bit")
+    @Column(name = "status", columnDefinition = "bit")
     @Range(min = 0, max = 1, message = "{contact_store.status.range}")
     @NotNull(message = "{contact_store.status.null}")
     private int status;

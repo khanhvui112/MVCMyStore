@@ -1,3 +1,4 @@
+/*
 package com.sanvui.config;
 
 import com.sanvui.service.CustomerUserService;
@@ -12,17 +13,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+*/
 /*
-*
+ *
  * @author: VuiSK
  * @created: 27/11/2021-9:58 AM
  * @mailto: sanvankhanh@gmail.com
 
-*/
+ *//*
+
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity( prePostEnabled = true )
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -38,9 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //      page for admin or manager
         http.authorizeRequests()
                 .antMatchers("/admin-dashboard/**")
-                .hasAnyAuthority("ADMIN","MANAGER");
+                .hasAnyAuthority("ADMIN", "MANAGER");
 
-//
         http.authorizeRequests()
                 .and().exceptionHandling().accessDeniedPage("/accessDenied");
 
@@ -72,7 +74,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
+*/
