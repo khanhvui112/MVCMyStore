@@ -1,5 +1,7 @@
 package com.sanvui.utils;
 
+import io.jsonwebtoken.lang.Objects;
+
 import javax.servlet.http.Cookie;
 import java.util.Arrays;
 import java.util.Optional;
@@ -19,10 +21,23 @@ public final class CookieUtil {
     }
 
     public static Cookie getCookieByName(Cookie[] cookies, String name) {
-        if (cookies != null) {
+        if (Objects.isEmpty(cookies)) {
             for (Cookie c : cookies) {
                 if (c.getName().equals(name)) {
                     return c;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Cookie clearCookieByName(Cookie[] cookies, String name) {
+        if (Objects.isEmpty(cookies)) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals(name)) {
+                    Cookie cookie = new Cookie("access_token", c.toString());
+                    cookie.setMaxAge(0);
+                    return cookie;
                 }
             }
         }

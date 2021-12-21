@@ -1,7 +1,7 @@
 SELECT
     top 20
 	p.product_id,
-        p.product_name,
+    p.product_name,
     p.create_date,
     p.update_date,
     p.title,
@@ -9,10 +9,11 @@ SELECT
     p.ca_id,
     p.ma_id,
     p.sale_code,
-    p.color_id,
-    p.product_detail_id,
-    p.image_link,
-    p.price
+    ps.color_id,
+    ps.price,
+    ps.price_sales
 FROM
     products p
-order by create_date desc
+INNER JOIN productdetails ps
+ON p.product_id = ps.product_id
+order by p.update_date desc

@@ -1,8 +1,14 @@
 package com.sanvui.controller;
 
+import com.sanvui.utils.CookieUtil;
+import io.jsonwebtoken.lang.Objects;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.*;
 
 /**
@@ -13,9 +19,7 @@ import javax.servlet.http.*;
 @Controller
 public class LogoutController {
     @GetMapping("/logout")
-    public String logout(HttpSession session
-            , HttpServletRequest request
-            , HttpServletResponse response) {
+    public String logout() {
         return "redirect:/login";
     }
 }

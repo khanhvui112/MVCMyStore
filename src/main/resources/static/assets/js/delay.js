@@ -9,9 +9,9 @@ function DelayRedirect() {
         if (seconds > 0) {
             timecount.innerHTML = seconds;
         }
-        if (seconds == 0) {
+        if (seconds === 0) {
             timecount.innerHTML = 0;
-            window.location = "/home";
+            window.location = "./";
         }
     }, 1000);
 }

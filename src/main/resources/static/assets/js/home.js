@@ -32,33 +32,42 @@ function getProduct() {
 }
 
 function drawDateProduct(data) {
-    for (let p in data) {
-        let o = data[p];
-        let price = priceSale(o);
+    data.forEach(function (product){
+        let imageLink = null;
+        product.imageLink.forEach(function (image) {
+            if(image.imageType === 'default'){
+                imageLink = image.imageName;
+            }
+        })
         $(".lts-products")
             .append(`
                         <div class="item">` +
-                (o.sale_code !== null ? `<div class="sticker sticker-left">
-                               <span>-${o.sale_code}</span>
+                (product.sale_code !== null && product.sale_code.length > 0 ? `<div class="sticker sticker-left">
+                               <span>-${product.sale_code}</span>
                                 </div>` : ``) +
                 `<div class="img">
-                              <a href="/product/product-${o.productId}" title="${o.productName}">
-                                <img src="${o.imageLink}" alt="${o.productName}" title="${o.productName}">
+                              <a href="/product/product-${product.productId}" title="${product.productName}">
+                                <img src="${imageLink}" alt="${product.productName}" title="${product.productName}">
                               </a>
                             </div>
                             <div class="info">
-                              <a href="/product/product-${o.productId}" class="title" title="${o.productName}">${o.productName}</a>
-                              <span class="price">` +
-                (o.sale_code === null ? `<strong>${o.price} ₫</strong>`
-                    :
-                    `<strong>${price} ₫</strong>
-                                      <strike>${o.price} ₫</strike>`) +
-                `
-                              </span>
+                              <a href="/product/product-${product.productId}" class="title" title="${product.productName}">${product.productName}</a>
+                              <span class="price">
+                                ` +
+                                (product.sale_code !== null
+                                && product.sale_code.length > 0 ?
+                                    `<strong>${product.priceSales.toLocaleString()} ₫</strong>
+                                    <strike>${product.price.toLocaleString()} ₫</strike>` :
+                                    `<strong>${product.price.toLocaleString()} ₫</strong>`) +
+                                `
+                               </span>
                             </div>
-                            <button id="product-${o.productId}" type="button" class="btn btn-primary">Mua ngay</button>
+                            <button id="product-${product.productId}" type="button" class="btn btn-primary">Mua ngay</button>
                           </div>
-                         `)
+         `)
+    })
+    for (let p in data) {
+
     }
 }
 

@@ -1,7 +1,7 @@
 package com.sanvui.controller.api;
 
 import com.sanvui.model.dto.resp.BaseResponseDto;
-import com.sanvui.model.entity.ProductDetail;
+import com.sanvui.model.entity.ProductDetails;
 import com.sanvui.service.ProductDetailService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class ProductDetailResource {
 
     @GetMapping
     public ResponseEntity findAll() {
-        List<ProductDetail> productDetails = productDetailService.findAll();
+        List<ProductDetails> productDetails = productDetailService.findAll();
         if (CollectionUtils.isNotEmpty(productDetails)) {
             return ResponseEntity
                     .ok(BaseResponseDto

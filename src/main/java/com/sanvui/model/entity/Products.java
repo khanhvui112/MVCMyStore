@@ -2,6 +2,7 @@ package com.sanvui.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sanvui.model.dto.resp.ImagesResponseDto;
 import com.sanvui.model.dto.resp.ProductResponseDto;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
@@ -42,9 +43,8 @@ import java.util.List;
                                 @ColumnResult(name = "ma_id", type = Integer.class),
                                 @ColumnResult(name = "sale_code", type = String.class),
                                 @ColumnResult(name = "color_id", type = Integer.class),
-                                @ColumnResult(name = "product_detail_id", type = Integer.class),
-                                @ColumnResult(name = "image_link", type = String.class),
-                                @ColumnResult(name = "price", type = String.class),
+                                @ColumnResult(name = "price", type = Double.class),
+                                @ColumnResult(name = "price_sales", type = Double.class)
                         }
                 )
         }
@@ -102,20 +102,15 @@ public class Products {
     @Column(name = "sale_code")
     private String saleCode;
 
-
-    @NotNull(message = "{range.null}")
-    @Column(name = "color_id", nullable = false)
-    private Integer color_id;
-
-    @Column(name = "product_detail_id")
-    private Integer product_detail_id;
-
     @Column(name = "image_link")
     @NotBlank
     private String imageLink;
 
     @Column(name = "price", precision = 10, scale = 2)
     private Double price;
+
+    @Column(name = "price_sales", columnDefinition = "varchar(30)")
+    private String priceSales;
 
     //    Mapping to Category by ca_Id
     @ManyToOne
@@ -133,30 +128,19 @@ public class Products {
     @ToString.Exclude
     private Manufacturer manufacturer;
 
-
-    //    Mapping to Color by colorl_Id
-    @ManyToOne
-    @JoinColumn(name = "color_id", referencedColumnName = "color_id"
-            , insertable = false, updatable = false)
-    @JsonBackReference(value = "color")
-    @ToString.Exclude
-    private Color color;
-
     //Mapper to Image by product
     @OneToMany(mappedBy = "product", orphanRemoval = true
-            , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+            , cascade = CascadeType.ALL)
     @JsonManagedReference(value = "image")
     @LazyCollection(LazyCollectionOption.FALSE)
     @ToString.Exclude
     private List<Images> imagesList;
 
     //  Mapper OrderDetail
-    @ManyToOne
-    @JoinColumn(name = "product_detail_id", referencedColumnName = "product_detail_id"
-            , insertable = false, updatable = false)
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonBackReference(value = "productDetail")
     @ToString.Exclude
-    private ProductDetail productDetail;
+    private List<ProductDetails> productDetails;
 
     //  Mapper OrderDetail
     @OneToMany(mappedBy = "product", orphanRemoval = true
@@ -175,6 +159,12 @@ public class Products {
     @ToString.Exclude
     private List<Rates> ratesList;
 
+    //    Mapping to ProductSpecification
+    @OneToOne(mappedBy = "product", orphanRemoval = true
+            , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "productSpecification")
+    @ToString.Exclude
+    private ProductSpecification productSpecification;
 
     public Products(String productName, String price, String title, String description, int caId, int colorId, int maId, int productDetailId) {
     }

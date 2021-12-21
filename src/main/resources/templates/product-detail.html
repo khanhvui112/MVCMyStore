@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>My Store - Chi tiết sản phẩm</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+
+        <!--     font       -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+
+        <!--Home css -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/product-detail.css">
+
+    </head>
+    <body>
+        <!--header -->
+        <th:block th:insert="common/_header"/>
+
+        <!--end header-->
+
+        <!--show product search -->
+        <th:block th:insert="common/_search-product"/>
+        <!--end show product product search-->
+
+        <!--start products list -->
+        <th:block th:insert="common/_product"/>
+        <!--end products list-->
+
+        <!--start products detail slider -->
+        <th:block th:insert="common/slider-images"/>
+        <!--end products list-->
+
+
+        <!--    start footer -->
+        <th:block th:insert="common/_footer"/>
+        <!--    end footer -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/owl.carousel.min.js"></script>
+        <script src="/assets/js/main.js"></script>
+
+        <!-- Custom Theme Scripts -->
+        <script src="/assets/js/product-detail.js"></script>
+    </body>
+</html>

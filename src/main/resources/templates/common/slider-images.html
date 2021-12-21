@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/assets/css/slider-images.css">
+
+<section>
+    <div class="container">
+        <div class="product-details">
+            <div class="d-flex top-product">
+                <h1 th:text="${product.productName}">
+                </h1>
+            </div>
+
+            <div class="d-flex product-details-container">
+                <div class="product-details-container-left">
+                    <div class="love-this-button">
+                        <a title="Thêm vào sản phẩm yêu thích" href="javascript:wishProduct(1562, false)">
+                            <i class="icon-love-1"></i>
+                            <i class="icon-love-2"></i>
+                        </a>
+                    </div>
+                    <div class="slider">
+                        <ul class="bxslider">
+                            <th:block th:if="${product != null}">
+                                <th:block th:each="i : ${product.imageLink}">
+                                    <li>
+                                        <img th:src="${i.imageName}">
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </ul>
+                        <div class="d-flex justify-content-center bx-pager">
+                            <th:block th:if="${product != null}">
+                                <th:block th:each="i : ${product.imageLink}">
+                                    <a th:data-slide-index="${iStat.index}" href="">
+                                        <img th:src="${i.imageName}">
+                                        <p>Màu xanh</p>
+                                    </a>
+
+                                </th:block>
+                            </th:block>
+                           </div>
+                    </div>
+                </div>
+
+                <div class="product-center">
+                    <p class="price current-product-price">
+                        <th:block th:if="${!#strings.isEmpty(product.sale_code)}">
+                            <strong th:text="${#numbers.formatDecimal(product.priceSales, 1, 'POINT', 0, 'COMMA')}+' ₫ '"> </strong>
+                            <strike th:text="${#numbers.formatDecimal(product.price, 1, 'POINT', 0, 'COMMA')}+' ₫ '"> </strike>
+                        </th:block>
+
+                        <th:block th:unless="${!#strings.isEmpty(product.sale_code)}">
+
+                            <strong th:text="${#numbers.formatDecimal(product.price, 1, 'POINT', 0, 'COMMA')}+' ₫ '"> </strong>
+
+                        </th:block>
+                        <i> | Giá đã bao gồm 10% VAT</i>
+
+                    </p>
+                    <p class="freeship">
+                        <i class="fa fa-truck"></i> <span>Miễn phí vận chuyển toàn quốc</span>
+                    </p>
+
+
+
+
+                    <div class="product-option color">
+                        <strong class="label">Lựa chọn màu và xem địa chỉ còn hàng</strong>
+                        <div class="options" id="colorOptions">
+
+                            <input class="check-color" type="radio" name="color" id="1">
+                            <label for="1" data-name="Đen" class="item selected">
+                                <strong style="color:currentColor;">Đen</strong>
+                                <strong>3,090,000 ₫</strong>
+                                <strike>3,090,000 ₫</strike>
+                            </label>
+
+                            <input class="check-color" type="radio" name="color" id="2">
+                            <label for="2"  data-name="Đỏ" class="item selected">
+                                <strong style="color:currentColor;">Đỏ</strong>
+                                <strong>3,090,000 ₫</strong>
+                                <strike>3,090,000 ₫</strike>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="product-action">
+                        <a title="Mua ngay" data-sku="SPARK7TD" href="javascript:;" class="btn-red btnQuickOrder btnbuy">
+                            <strong class="d-block">MUA NGAY</strong><span> Giao tận nhà (COD) hoặc Nhận tại cửa hàng</span>
+                        </a>
+                        <a title="Thêm vào giỏ hàng" data-sku="SPARK7TD" href="javascript:;" class="add-cart btn-orange btnbuy btn-icon"><i class="fa fa-cart-plus"></i><span class="cart-plus"><i class="fa fa-cart-plus"></i></span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Scripts Slider Bx -->
+<script src="/assets/js/slider-images.js"></script>

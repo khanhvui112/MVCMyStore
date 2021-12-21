@@ -1,6 +1,7 @@
 package com.sanvui.controller.api;
 
 import com.sanvui.model.dto.resp.BaseResponseDto;
+import com.sanvui.model.dto.resp.ImagesResponseDto;
 import com.sanvui.model.dto.resp.ProductResponseDto;
 import com.sanvui.model.entity.Products;
 import com.sanvui.service.FileLocalStorageService;
@@ -47,7 +48,7 @@ public class ProductResource {
     public ResponseEntity findAllPage() throws IOException {
         return ResponseEntity
                 .ok(BaseResponseDto
-                        .success("Find product by name success", services.findAllPage(0, null)));
+                        .success("Find product by name success", services.findAllPage(0, null, null)));
     }
 
     @GetMapping
@@ -55,9 +56,6 @@ public class ProductResource {
 
         List<ProductResponseDto> productRespDtos = services.findAllCustom();
 
-        for (ProductResponseDto p : productRespDtos) {
-            p.setImageLink(fileLocalStorageService.buildUrl(p.getImageLink()));
-        }
         if (CollectionUtils.isNotEmpty(productRespDtos)) {
             return ResponseEntity
                     .ok(BaseResponseDto
@@ -94,9 +92,7 @@ public class ProductResource {
         product.setTitle(title);
         product.setDescription(description);
         product.setCa_id(caId);
-        product.setColor_id(colorId);
         product.setMa_id(maId);
-        product.setProduct_detail_id(productDetailId);
 
         if (file != null) {
             String imageLink = "/" + fileLocalStorageService.saveFile(file, "product");

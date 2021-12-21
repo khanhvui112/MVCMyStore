@@ -6,10 +6,10 @@ $(document).ready(function () {
     });
 
     $(document).click(function (e) {
-        // Đối tượng container chứa popup
+        // show
         let container = $(".autocomplete-suggestions");
 
-        // Nếu click bên ngoài đối tượng container thì ẩn nó đi
+        // hide if move out
         if (!container.is(e.target) && container.has(e.target).length === 0) {
             $('.autocomplete-suggestions .autocomplete-suggestion').empty();
             container.hide();
@@ -21,19 +21,32 @@ function drawProductSearch(data) {
     let append = $('.autocomplete-suggestions');
     append.show();
     $('.autocomplete-suggestion').empty();
-    for (let p in data) {
+
+    data.forEach(function (product){
+        let imageLink = null;
+        product.imageLink.forEach(function (i){
+            let type = i.imageType;
+            if(type === 'default'){
+                imageLink = i.imageName;
+            }
+        })
         $('.autocomplete-suggestion')
             .append(`
-            <div class="search-item" onClick="location.href='/products-${data[p].productId}'">
-                <div class="img"><img src="${data[p].imageLink}"></div>
+            <div class="search-item" onClick="location.href='/products/${product.productId}'">
+                <div class="img"><img src="${imageLink}"></div>
                 <div class="info">
-                    <h2><a src="${data[p].imageLink}">${data[p].productName}</a></h2>
-                    <h3> ${data[p].price} ₫<strike></strike></h3>
+                    <h2><a src="${imageLink}">${product.productName}</a></h2>
+                    ` +
+                    (product.sale_code !== null
+                    && product.sale_code.length > 0 ?
+                        `<h3>${product.priceSales.toLocaleString()} ₫</h3>
+                                        <strike>${product.price.toLocaleString()} ₫</strike>` :
+                        `<h3>${product.price.toLocaleString()} ₫</h3>`) +
+                    `
                 </div>
             </div>
             `)
-    }
-
+    })
 
 }
 

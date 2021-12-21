@@ -1,8 +1,11 @@
 package com.sanvui.repository;
 
-import com.sanvui.model.entity.ProductDetail;
+import com.sanvui.model.entity.ProductDetails;
+import com.sanvui.repository.custom.CustomizeProductDetailRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author: VuiSK
@@ -10,5 +13,7 @@ import org.springframework.stereotype.Repository;
  * @mailto: sanvankhanh@gmail.com
  */
 @Repository
-public interface ProductDetailRepository extends JpaRepository<ProductDetail, Integer> {
+public interface ProductDetailRepository extends JpaRepository<ProductDetails, Integer>
+        , CustomizeProductDetailRepository {
+
 }

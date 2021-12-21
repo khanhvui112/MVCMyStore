@@ -3,8 +3,8 @@
 #    org:
 #      hibernate:
 #        type: trace
-
 spring:
+
   datasource:
     url: jdbc:sqlserver://localhost:1433;database=MYSTOREMVC
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -38,6 +38,7 @@ app:
   url-local:
     url: http://localhost:${server.port}
 
+
   page:
     size: 4
     products:
@@ -57,14 +58,14 @@ app:
   token:
     time: 5
 #
-logging:
-  level:
-    org:
-      hibernate:
-        type :
-          descriptor:
-            sql:
-              BasicBinder: TRACE
-        SQL: DEBUG
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        type :
+#          descriptor:
+#            sql:
+#              BasicBinder: TRACE
+#        SQL: DEBUG
 
 

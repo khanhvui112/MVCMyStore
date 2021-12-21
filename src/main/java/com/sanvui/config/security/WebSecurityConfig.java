@@ -8,7 +8,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author: VuiSK
@@ -52,16 +54,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 //        config login form
-        http.authorizeRequests()
-                .and().formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .failureUrl("/login?error")
-                .usernameParameter("username")
+        http.authorizeRequests().
+                antMatchers("/login")
+                .permitAll().anyRequest().authenticated()
+                .and().exceptionHandling().and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().logout().logoutSuccessUrl("/login?logout-success")
+                .deleteCookies("access_token").invalidateHttpSession(true);
 
-//                config logout
-                .and().logout().logoutUrl("/logout")
-                .logoutSuccessUrl("/login");
+        http.authorizeRequests()
+                .and()
+                .apply(getSecurityConfig());
+    }
+
+    private JwtConfig getSecurityConfig() {
+        return new JwtConfig();
     }
 
     @Override

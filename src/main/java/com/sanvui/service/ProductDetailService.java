@@ -1,6 +1,6 @@
 package com.sanvui.service;
 
-import com.sanvui.model.entity.ProductDetail;
+import com.sanvui.model.entity.ProductDetails;
 import com.sanvui.repository.ProductDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -21,7 +21,17 @@ public class ProductDetailService {
     private ProductDetailRepository detailRepository;
 
     @Cacheable("productDetails")
-    public List<ProductDetail> findAll() {
+    public List<ProductDetails> findAll() {
         return detailRepository.findAll(Sort.by("productDetailId").ascending());
     }
+
+    public ProductDetails findProductDetailById(Integer productDetailId) {
+        return (detailRepository.findById(productDetailId)).isPresent()
+                ? detailRepository.getById(productDetailId) : null;
+    }
+
+    public List<ProductDetails> findProductDetailByProductId(Integer productDetailId) {
+        return detailRepository.findByProductId(productDetailId);
+    }
+
 }

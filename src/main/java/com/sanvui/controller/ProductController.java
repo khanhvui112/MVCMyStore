@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,8 +32,13 @@ public class ProductController {
     @Autowired
     private FileLocalStorageService fileLocalStorageService;
 
+    /*
+    * find all product start page
+    * sort by field
+    * */
     @GetMapping
     public String allProduct(Model model
+            ,@RequestParam(value="sort", required = false) String sort
              ,@RequestParam(value="category", required = false) Integer caId
             ,@RequestParam(value="manufacturer", required = false) Integer maId
             ,@RequestParam(value = "page", required = false, defaultValue = "0") Integer page) throws IOException {
@@ -51,12 +57,14 @@ public class ProductController {
             whereClause.put("c.ca_id",caId.toString());
         }
 
-        Page<ProductResponseDto> productRespDtos = productsServices.findAllPage(page, whereClause);
+        Page<ProductResponseDto> productRespDtos;
+        if(StringUtils.isNotBlank(sort) && sort.equals("top20")){
+            productRespDtos = productsServices.findTop20CreateDateDesc();
+        }else {
+            model.addAttribute("sortOld", sort);
+            productRespDtos = productsServices.findAllPage(page, whereClause, sort);
+        }
 
-        Page<ProductResponseDto> top20CreateDateDesc = productsServices.findTop20CreateDateDesc();
-
-        System.out.println(top20CreateDateDesc);
-        System.out.println(top20CreateDateDesc.getContent());
         model.addAttribute("totalPages", productRespDtos.getTotalPages());
 
         model.addAttribute("listProducts", productRespDtos);
@@ -64,4 +72,17 @@ public class ProductController {
         return "product";
     }
 
+
+   /*
+   * find by id
+   * */
+    @GetMapping("/{id}")
+    public String findById(
+            @PathVariable Integer id,
+            Model model) {
+
+        model.addAttribute("product",productsServices.findByProductId(id));
+
+        return "product-detail";
+    }
 }

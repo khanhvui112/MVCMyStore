@@ -7,8 +7,11 @@ SELECT p.product_id,
        p.ca_id,
        p.ma_id,
        p.sale_code,
-       p.color_id,
-       p.product_detail_id,
-       p.image_link,
-       p.price
+       ps.color_id,
+       ps.price,
+       ps.price_sales
 FROM products p
+INNER JOIN productdetails ps
+ON p.product_id = ps.product_id
+INNER JOIN productspecification psf
+ON p.product_id = psf.product_id

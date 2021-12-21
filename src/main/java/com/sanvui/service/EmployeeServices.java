@@ -144,8 +144,8 @@ public class EmployeeServices {
     }
 
 
-    public Optional<Employee> findByUserName(String s) {
-        return employeeRepository.findByUserName(s);
+    public Optional<Employee> findByUserName(String username) {
+        return employeeRepository.findByUserName(username);
     }
 
     public boolean generateCheck(Employee employee, String name) {

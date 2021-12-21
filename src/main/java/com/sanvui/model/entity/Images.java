@@ -34,6 +34,9 @@ public class Images {
     @Size(min = 2, message = "{name.min}")
     private String imageName;
 
+    @Column(name = "image_type")
+    private String imageType;
+
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id"
             , updatable = false, insertable = false)

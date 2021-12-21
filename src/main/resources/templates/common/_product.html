@@ -9,26 +9,34 @@
                             <span th:text="${item.sale_code}">-2%</span>
                         </div>
                         <div class="img">
-                            <a th:href="@{/products-{id}(id=${item.productId})}" th:title="${item.productName}">
-                                <img th:src="${item.imageLink}" th:alt="${item.productName}"
-                                     th:title="${item.productName}">
+                            <a th:href="@{'/products/'+${item.productId}}" th:title="${item.productName}">
+
+                                <th:block th:if="${item.imageLink != null }">
+                                    <th:block th:each="i : ${item.imageLink}">
+                                        <th:block th:if="${i.imageType != null
+                                        && i.imageType == 'default'}">
+                                            <img th:src="${i.imageName}" th:alt="${item.productName}"
+                                                 th:title="${item.productName}">
+                                        </th:block>
+                                    </th:block>
+                                </th:block>
+
                             </a>
                         </div>
                         <div class="info">
-                            <a th:href="@{/products-{id}(id=${item.productId})}" class="title"
+                            <a th:href="@{'/products/'+${item.productId}}" class="title"
                                th:title="${item.productName}" th:text="${item.productName}"></a>
                             <span class="price">
 
-                                <th:block th:if="${item.sale_code}">
-
-                                      <strike th:text="${item.price}+' ₫ '"> </strike>
-
+                                <th:block th:if="${item.sale_code != null
+                                && item.sale_code.length > 0}">
+                                    <strong th:text="${#numbers.formatDecimal(item.priceSales, 1, 'POINT', 0, 'COMMA')} + ' ₫ '"></strong>
+                                    <strike th:text="${#numbers.formatDecimal(item.price, 1, 'POINT', 0, 'COMMA')} + ' ₫ '"> </strike>
                                 </th:block>
 
-                                <th:block th:unless="${item.sale_code}">
-
-                                    <strong th:text="${item.price}+' ₫ '"> </strong>
-
+                                <th:block th:unless="${item.sale_code != null
+                                && item.sale_code.length > 0}">
+                                    <strong th:text="${#numbers.formatDecimal(item.price, 1, 'POINT', 0, 'COMMA')} + ' ₫ '"> </strong>
                                 </th:block>
 
                               </span>
@@ -47,7 +55,7 @@
 
                                     <a th:id="'page-'+${index +1}"  class="page-link" th:href="${urlBuilder.replaceQueryParam('page', index+1).toUriString()}"
                                        th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}"
-                                        th:text="${index + 1}">
+                                       th:text="${index + 1}">
                                     </a>
                                 </th:block>
                                 <th:block th:unless="${(param.category)}">

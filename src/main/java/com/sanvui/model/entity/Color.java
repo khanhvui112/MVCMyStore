@@ -47,7 +47,7 @@ public class Color {
             , orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference(value = "color")
     @ToString.Exclude
-    private List<Products> productsList;
+    private List<ProductDetails> productDetails;
 
 
 }

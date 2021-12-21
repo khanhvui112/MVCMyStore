@@ -98,7 +98,8 @@ public class HibernateUtils {
         configuration.addAnnotatedClass(Orders.class);
         configuration.addAnnotatedClass(Payment.class);
         configuration.addAnnotatedClass(Role.class);
-        configuration.addAnnotatedClass(ProductDetail.class);
+        configuration.addAnnotatedClass(ProductDetails.class);
+        configuration.addAnnotatedClass(ProductSpecification.class);
         configuration.addAnnotatedClass(Products.class);
         configuration.addAnnotatedClass(Rates.class);
         configuration.addAnnotatedClass(Salary.class);

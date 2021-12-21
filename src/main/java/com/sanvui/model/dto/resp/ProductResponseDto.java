@@ -1,10 +1,8 @@
 package com.sanvui.model.dto.resp;
-
-import com.sanvui.model.entity.Products;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author: VuiSK
@@ -27,7 +25,26 @@ public class ProductResponseDto {
     private Integer ma_id;
     private String sale_code;
     private Integer color_id;
-    private Integer product_detail_id;
-    private String imageLink;
-    private String price;
+
+    private List<ImagesResponseDto> imageLink;
+
+    private List<ProductDetailRepositoryDto> productDetailRepositoryDtos;
+
+    private Double price;
+    private Double priceSales;
+
+    public ProductResponseDto(int productId, String productName, LocalDateTime createDate, LocalDateTime updateDate, String title, String description, Integer ca_id, Integer ma_id, String sale_code, Integer color_id, Double price, Double priceSales) {
+        this.productId = productId;
+        this.productName = productName;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.title = title;
+        this.description = description;
+        this.ca_id = ca_id;
+        this.ma_id = ma_id;
+        this.sale_code = sale_code;
+        this.color_id = color_id;
+        this.price = price;
+        this.priceSales = priceSales;
+    }
 }
