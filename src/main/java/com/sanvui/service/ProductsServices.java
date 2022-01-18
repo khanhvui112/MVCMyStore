@@ -2,10 +2,13 @@ package com.sanvui.service;
 
 import com.sanvui.convert.DecimalFormats;
 import com.sanvui.convert.ProductConvert;
+import com.sanvui.model.dto.resp.ColorResponseDto;
 import com.sanvui.model.dto.resp.ImagesResponseDto;
 import com.sanvui.model.dto.resp.ProductResponseDto;
+import com.sanvui.model.entity.Color;
 import com.sanvui.model.entity.Images;
 import com.sanvui.model.entity.Products;
+import com.sanvui.repository.ColorRepository;
 import com.sanvui.repository.ProductRepository;
 import com.sanvui.service.imp.ImagesServiceImpl;
 import com.sanvui.utils.SortUtil;
@@ -45,6 +48,9 @@ public class ProductsServices {
 
     @Autowired
     private ProductRepository repository;
+
+    @Autowired
+    private ColorRepository colorRepository;
 
     @Autowired
     private ImagesServiceImpl imagesServiceImpl;
@@ -140,10 +146,11 @@ public class ProductsServices {
         if (product.isPresent()){
 
             Products productGet = product.get();
-            productGet.setProductDetails(productDetailService.findProductDetailByProductId(productGet.getProductId()));
+
+            productGet.setProductDetails(productDetailService.findProductDetailByProductId(productGet.getProductId(), productGet.getSaleCode()));
 
             productResponseDtos = productConvert.productToResponseDto(productGet,fileLocalStorageService);
-           productResponseDtos.setProductDetailRepositoryDtos(ProductConvert.getInstance().buildProductDetails(productGet));
+            productResponseDtos.setProductDetailRepositoryDtos(ProductConvert.getInstance().buildProductDetails(productGet));
             productResponseDtos.setPriceSales(buildPriceSale(productResponseDtos));
             return  productResponseDtos;
         }

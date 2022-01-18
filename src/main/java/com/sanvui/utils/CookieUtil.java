@@ -21,7 +21,7 @@ public final class CookieUtil {
     }
 
     public static Cookie getCookieByName(Cookie[] cookies, String name) {
-        if (Objects.isEmpty(cookies)) {
+        if (!Objects.isEmpty(cookies)) {
             for (Cookie c : cookies) {
                 if (c.getName().equals(name)) {
                     return c;

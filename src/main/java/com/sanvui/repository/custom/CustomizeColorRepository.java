@@ -1,9 +1,9 @@
 package com.sanvui.repository.custom;
 
 import com.sanvui.model.dto.resp.ColorResponseDto;
-
-import java.io.IOException;
-import java.util.List;
+import com.sanvui.model.entity.Color;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * @author: VuiSK
@@ -13,4 +13,6 @@ import java.util.List;
 
 public interface CustomizeColorRepository extends CustomizeBaseRepository<ColorResponseDto> {
 
+    @Query(value = "SELECT * FROM color where color_id =:id ", nativeQuery = true)
+    Color findColorById(@Param("id") Integer id);
 }

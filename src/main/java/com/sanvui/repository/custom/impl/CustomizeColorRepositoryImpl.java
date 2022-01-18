@@ -1,5 +1,6 @@
 package com.sanvui.repository.custom.impl;
 
+import com.sanvui.model.entity.Color;
 import com.sanvui.repository.custom.CustomizeColorRepository;
 import com.sanvui.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class CustomizeColorRepositoryImpl implements CustomizeColorRepository {
         return entityManager
                 .createNativeQuery(query, "colorCustomResultMapping")
                 .getResultList();
+    }
+
+    @Override
+    public Color findColorById(Integer id) {
+        return null;
     }
 }

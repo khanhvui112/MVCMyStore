@@ -1,7 +1,6 @@
 package com.sanvui.service.imp;
 
 import com.sanvui.service.FileLocalStorageService;
-import org.apache.commons.compress.utils.FileNameUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;

@@ -37,8 +37,6 @@ app:
     url-prefix: http://localhost:${server.port}/file
   url-local:
     url: http://localhost:${server.port}
-
-
   page:
     size: 4
     products:
@@ -57,15 +55,15 @@ app:
 
   token:
     time: 5
-#
-#logging:
-#  level:
-#    org:
-#      hibernate:
-#        type :
-#          descriptor:
-#            sql:
-#              BasicBinder: TRACE
-#        SQL: DEBUG
+
+logging:
+  level:
+    org:
+      hibernate:
+        type :
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        SQL: DEBUG
 
 

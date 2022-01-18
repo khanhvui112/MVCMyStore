@@ -69,20 +69,27 @@
                     <div class="product-option color">
                         <strong class="label">Lựa chọn màu và xem địa chỉ còn hàng</strong>
                         <div class="options" id="colorOptions">
+                            <th:block th:if="${product_details != null}">
+                                <th:block th:each="p : ${product_details}">
+                                    <input class="check-color" type="radio" name="color" th:id="${p.color.colorId}">
+                                    <label th:for="${p.color.colorId}" data-name="Đen" class="item selected">
+                                        <strong style="color:currentColor;" th:text="${p.color.colorName}"></strong>
 
-                            <input class="check-color" type="radio" name="color" id="1">
-                            <label for="1" data-name="Đen" class="item selected">
-                                <strong style="color:currentColor;">Đen</strong>
-                                <strong>3,090,000 ₫</strong>
-                                <strike>3,090,000 ₫</strike>
-                            </label>
+                                        <th:block th:if="${!#strings.isEmpty(p.priceSales)}">
+                                            <strong th:text="${#numbers.formatDecimal(p.priceSales, 1, 'POINT', 0, 'COMMA')}+' ₫ '"> </strong>
+                                            <strike th:text="${#numbers.formatDecimal(p.price, 1, 'POINT', 0, 'COMMA')}+' ₫ '"> </strike>
+                                        </th:block>
 
-                            <input class="check-color" type="radio" name="color" id="2">
-                            <label for="2"  data-name="Đỏ" class="item selected">
-                                <strong style="color:currentColor;">Đỏ</strong>
-                                <strong>3,090,000 ₫</strong>
-                                <strike>3,090,000 ₫</strike>
-                            </label>
+                                        <th:block th:unless="${!#strings.isEmpty(p.priceSales)}">
+
+                                            <strong th:text="${#numbers.formatDecimal(p.price, 1, 'POINT', 0, 'COMMA')}+' ₫ '"> </strong>
+
+                                        </th:block>
+
+                                    </label>
+                                </th:block>
+                            </th:block>
+
                         </div>
                     </div>
 
@@ -95,8 +102,167 @@
                 </div>
 
             </div>
+            <div class="product-layout d-flex">
+                <div class="product-layout-left">
+                    layout left
+                </div>
+                <div class="product-layout-right">
+                    <th:block th:if="${product != null}">
+                        <h3 th:text="'Thông số kỹ thuật '+ ${product.productName}"></h3>
+                        <th:block th:each="i : ${product.imageLink}">
+                            <th:block th:if="${i.imageType =='default'}">
+                                <div class="product-spect-img">
+                                    <img th:src="${i.imageName}">
+                                </div>
+                            </th:block>
+                        </th:block>
+                    </th:block>
+                    <th:block th:if="${product_specification != null}">
+                        <div class="product-specs">
+
+                            <div class="specs-special">
+                                <ol>
+                                    <li>
+                                        <strong>Công nghệ màn hình:</strong>
+                                        <span th:text="${product_specification.screen}"></span>
+                                    </li>
+                                </ol>
+                                <ol>
+                                    <li>
+                                        <strong>Độ phân giải:</strong>
+                                        <span th:text="${product_specification.resolution}"></span>
+                                    </li>
+                                </ol>
+                                <ol>
+                                    <li>
+                                        <strong>Hệ điều hành:</strong>
+                                        <span th:text="${product_specification.operatingSystem}"></span>
+                                    </li>
+                                </ol>
+                                <ol>
+                                    <li>
+                                        <strong>Chip xử lý (CPU):</strong>
+                                        <span th:text="${product_specification.CPU}"></span>
+                                    </li>
+                                </ol>
+                                <ol>
+                                    <li>
+                                        <strong>Bộ nhớ trong (ROM):</strong>
+                                        <span th:text="${product_specification.ROM}"></span>
+                                    </li>
+                                </ol>
+                                <ol>
+                                    <li>
+                                        <strong>RAM:</strong>
+                                        <span th:text="${product_specification.RAM}"></span>
+                                    </li>
+                                </ol>
+                                <ol>
+                                    <li>
+                                        <strong>Mạng di động:</strong>
+                                        <span th:text="${product_specification.mobileNetwork}"></span>
+                                    </li>
+                                </ol>
+                                <ol>
+                                    <li>
+                                        <strong>Số khe sim:</strong>
+                                        <span th:text="${product_specification.simCard}"></span>
+                                    </li>
+                                </ol>
+                                <ol>
+                                    <li>
+                                        <strong>Dung lượng pin:</strong>
+                                        <span th:text="${product_specification.battery}"></span>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Chi tiết cấu hình
+                        </button>
+                    </th:block>
+
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div>
+                <ol>
+                    <li>
+                        <strong>Công nghệ màn hình:</strong>
+                        <span th:text="${product_specification.screen}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>Độ phân giải:</strong>
+                        <span th:text="${product_specification.resolution}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>Hệ điều hành:</strong>
+                        <span th:text="${product_specification.operatingSystem}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>Chip xử lý (CPU):</strong>
+                        <span th:text="${product_specification.CPU}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>Bộ nhớ trong (ROM):</strong>
+                        <span th:text="${product_specification.ROM}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>RAM:</strong>
+                        <span th:text="${product_specification.RAM}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>Mạng di động:</strong>
+                        <span th:text="${product_specification.mobileNetwork}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>Số khe sim:</strong>
+                        <span th:text="${product_specification.simCard}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>Dung lượng pin:</strong>
+                        <span th:text="${product_specification.battery}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>Kích thước, khối lượng:</strong>
+                        <span th:text="${product_specification.weight}"></span>
+                    </li>
+                </ol>
+                <ol>
+                    <li>
+                        <strong>Màn hình:</strong>
+                        <span th:text="${product_specification.screenSize}"></span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Scripts Slider Bx -->
 <script src="/assets/js/slider-images.js"></script>

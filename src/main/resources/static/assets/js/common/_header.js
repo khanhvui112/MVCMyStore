@@ -22,10 +22,20 @@ function loadMenu() {
 function drawDateMenu(data) {
 
     const username = $("#username").text();
+    const quantity = $("#quantity").text();
 
     data.forEach(function (menu) {
         if (menu.meName === 'Trang chủ') {
             $(".site-logo>a").attr('href', menu.meLink);
+        }
+        if (menu.meLink === '/cart'){
+            $('.menu-hover-hover ul').append(
+                `<li>
+                    <span class="show-cart">${quantity}</span>
+                    <a href="${menu.meLink}" class="nav-link">${menu.meName}</a>
+                </li>
+                `
+            );
         }
         if (username !== '' && menu.meName === 'Đăng nhập') {
             $('.menu-hover-hover ul').append(

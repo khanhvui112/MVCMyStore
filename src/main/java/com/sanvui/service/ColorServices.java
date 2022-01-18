@@ -24,6 +24,10 @@ public class ColorServices {
     @Autowired
     private ColorRepository repository;
 
+    public Color findById(Integer id){
+        return repository.findById(id).get();
+    }
+
     /*
      * get all data in table Color
      * return List Color

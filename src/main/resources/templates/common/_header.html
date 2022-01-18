@@ -18,9 +18,10 @@
 <!-- Style -->
 <link rel="stylesheet" href="/assets/css/home/style.css">
 <link rel="stylesheet" href="/assets/css/common/_header.css">
-<header class="site-navbar js-sticky-header site-navbar-target bg-info" role="banner">
+<header class="site-navbar js-sticky-header site-navbar-target bg-cus" role="banner">
     <div class="px-4">
         <div class="row align-items-center position-relative">
+            <p id="quantity" style="display: none;" th:text="${session.quantity}"></p>
             <p id="username" style="display: none;" th:text="${session.userName}"></p>
             <div class="site-logo">
                 <a href="#" id="logone" class="text-black"><span style="font-size: 2rem;"

@@ -82,7 +82,6 @@ public class CustomizeProductRepositoryImpl implements CustomizeProductRepositor
         Integer totalPages = (Integer) entityManager.createNativeQuery(queryCount).getSingleResult();
 
 
-
         String sort = "order by ";
 
         List<String> s = pageable.getSort()

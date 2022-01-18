@@ -46,7 +46,7 @@ function drawDateProduct(data) {
                                <span>-${product.sale_code}</span>
                                 </div>` : ``) +
                 `<div class="img">
-                              <a href="/product/product-${product.productId}" title="${product.productName}">
+                              <a href="/products/${product.productId}" title="${product.productName}">
                                 <img src="${imageLink}" alt="${product.productName}" title="${product.productName}">
                               </a>
                             </div>
@@ -62,7 +62,7 @@ function drawDateProduct(data) {
                                 `
                                </span>
                             </div>
-                            <button id="product-${product.productId}" type="button" class="btn btn-primary">Mua ngay</button>
+                            <a id="product-${product.productId}" type="button" class="btn btn-primary add-to-cart">Thêm vào giỏ hàng</a>
                           </div>
          `)
     })

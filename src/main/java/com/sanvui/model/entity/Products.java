@@ -63,7 +63,7 @@ public class Products {
     @Id
     @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+    private Integer productId;
 
     @Field(termVector = TermVector.YES)
     @Column(name = "product_name", columnDefinition = "nvarchar(100)")

@@ -41,7 +41,7 @@
 
                               </span>
                         </div>
-                        <button th:id="${item.productId}" type="button" class="btn btn-primary">Mua ngay</button>
+                        <a th:id="'product-'+${item.productId}" style="color: white;" type="button" class="btn btn-primary add-to-cart">Thêm vào giỏ hàng</a>
                     </div>
                 </th:block>
             </div>
@@ -72,3 +72,4 @@
 
 </th:block>
 <script src="/assets/js/common/_product.js"></script>
+<script th:inline="javascript" src="/assets/js/common/add-to-cart.js"></script>

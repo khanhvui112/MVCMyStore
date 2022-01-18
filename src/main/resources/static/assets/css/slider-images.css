@@ -14,19 +14,23 @@
     max-width: 380px;
     margin-right: 15px;
 }
+
 .product-image .love-this-button {
     position: absolute;
     right: 20px;
     top: 20px;
     z-index: 99;
 }
+
 .product-center {
     flex-grow: 1;
     margin-left: 15px;
 }
+
 .product-center .price {
     margin-bottom: 10px;
 }
+
 .product-center .price strong {
     font-size: 25px;
     color: #fd475a;
@@ -45,8 +49,9 @@ h1 {
 }
 
 .bx-wrapper {
-    margin-bottom: 20px!important;
+    margin-bottom: 20px !important;
 }
+
 .slider bx-wrapper {
     max-width: 60%;
 }
@@ -71,7 +76,7 @@ h1 {
     height: 71px;
 }
 
-.bx-pager a p{
+.bx-pager a p {
     font-weight: 400;
     color: black;
 }
@@ -80,15 +85,16 @@ h1 {
     opacity: 0.3;
 }
 
-.bxslider>li{
-    width: 519.6px!important;
+.bxslider > li {
+    width: 519.6px !important;
 }
+
 .bx-pager a:hover,
 .bx-pager a.active {
     opacity: 1;
 }
 
-.top-product h1{
+.top-product h1 {
     font-size: 1.5rem;
 }
 
@@ -126,18 +132,22 @@ h1 {
     margin-bottom: 5px;
     font-weight: 600;
 }
+
 .product-option .item span label {
     white-space: nowrap;
     flex-basis: 100%;
 }
+
 .product-option .item span label strong {
     color: #333;
     font-weight: normal;
 }
+
 .product-option .item strong {
     color: #fd475a;
     display: block;
 }
+
 #colorOptions label span label strong {
     display: inline-block;
 }
@@ -149,15 +159,17 @@ h1 {
 .check-color:before {
     border: 2px solid yellow;
 }
-input[type='radio']{
-    display:none;
+
+input[type='radio'] {
+    display: none;
 }
+
 input[type='radio']:checked + .selected {
     border: 3px solid #31c5ff;
 }
 
 .product-center .freeship {
-    background: darkcyan  0% 0% no-repeat padding-box;
+    background: darkcyan 0% 0% no-repeat padding-box;
     border-radius: 4px;
     color: #fff;
     text-align: center;
@@ -176,17 +188,18 @@ input[type='radio']:checked + .selected {
     margin: 0;
 }
 
-.product-action {
+/*.product-action {
     display: flex;
     padding: 0 10px;
     justify-items: stretch;
-}
+}*/
 .product-action .btn-red {
     background: transparent linear-gradient(
-            89deg,#75b0d3 0%,rgb(30 191 169) 100%) 0% 0% no-repeat padding-box;
+            89deg, #75b0d3 0%, rgb(30 191 169) 100%) 0% 0% no-repeat padding-box;
     box-shadow: 0 4px 6px #00000029;
     border-radius: 3px;
 }
+
 .product-action .btnbuy {
     margin-right: 6px;
     display: block;
@@ -195,10 +208,55 @@ input[type='radio']:checked + .selected {
     padding: 4px 4px;
     flex-grow: 2;
 }
+
 a, a:link, a:visited {
     text-decoration: none;
     color: #00483d;
 }
+
 .product-action .btnbuy span {
     font-size: 12px;
+}
+
+/*css layout product information*/
+.product-layout-left {
+    flex-basis: 60%;
+}
+
+.product-layout-right {
+    flex-basis: 40%;
+    padding-left: 4%;
+}
+
+.product-layout-right h3 {
+    font-size: 15px;
+}
+
+.product-spect-img {
+    max-width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    min-height: 350px;
+}
+.product-spect-img img {
+    width: 75%;
+    border-radius: 14px;
+}
+.specs-special {
+    padding-left: 12%;
+    text-align: start;
+}
+
+.specs-special ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.specs-special li {
+    padding: 5px;
+}
+.modal-content>div>ol{
+    list-style: none;
 }

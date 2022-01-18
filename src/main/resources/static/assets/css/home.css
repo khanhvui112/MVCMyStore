@@ -45,6 +45,9 @@
     padding: 0 10px 15px 10px;
 }
 
+.add-to-cart {
+    color: white!important;
+}
 .lts-products .item button {
     margin-bottom: 8px;
 }

@@ -2,7 +2,11 @@ package com.sanvui.controller;
 
 import com.sanvui.convert.DecimalFormats;
 import com.sanvui.model.dto.resp.ProductResponseDto;
+import com.sanvui.model.entity.ProductDetails;
+import com.sanvui.model.entity.Products;
 import com.sanvui.service.FileLocalStorageService;
+import com.sanvui.service.ProductDetailService;
+import com.sanvui.service.ProductSpecificationServices;
 import com.sanvui.service.ProductsServices;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,12 @@ public class ProductController {
 
     @Autowired
     private ProductsServices productsServices;
+
+    @Autowired
+    private ProductDetailService productDetailService;
+
+    @Autowired
+    private ProductSpecificationServices productSpecificationServices;
 
     @Autowired
     private FileLocalStorageService fileLocalStorageService;
@@ -81,7 +91,15 @@ public class ProductController {
             @PathVariable Integer id,
             Model model) {
 
-        model.addAttribute("product",productsServices.findByProductId(id));
+        ProductResponseDto products = productsServices.findByProductId(id);
+
+        model.addAttribute("product",products);
+
+        model.addAttribute("product_specification",productSpecificationServices.findProductSpecificationById(id));
+
+        List<ProductDetails> productDetails = productDetailService.findProductDetailByProductId(id,products.getSale_code());
+
+        model.addAttribute("product_details",productDetails);
 
         return "product-detail";
     }

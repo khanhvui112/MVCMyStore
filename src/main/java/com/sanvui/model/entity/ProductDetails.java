@@ -50,6 +50,9 @@ public class ProductDetails {
     @Column(name = "type")
     private String type;
 
+    @Column(name = "version")
+    private String version;
+
     //    Mapping to Color by color_Id
     @ManyToOne
     @JoinColumn(name = "color_id", referencedColumnName = "color_id"
