@@ -21,6 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/v1/categorys")
+
 public class CategoryResource {
 
     @Autowired
@@ -28,6 +29,7 @@ public class CategoryResource {
 
     @GetMapping
     public ResponseEntity findAllCustom() throws IOException {
+
         List<CategoryResponseDto> categories = services.findAllCustom();
         if (CollectionUtils.isNotEmpty(categories)) {
             return ResponseEntity

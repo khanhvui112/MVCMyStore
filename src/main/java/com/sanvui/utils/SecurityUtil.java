@@ -17,11 +17,13 @@ public class SecurityUtil {
         SecurityContext securityContext = SecurityContextHolder.getContext();
 
         UserDetails userDetails = null;
+
         try {
             userDetails = (UserDetails) securityContext.getAuthentication().getPrincipal();
         }catch (Exception e) {
             return null;
         }
+
         return  Objects.nonNull(userDetails) ? userDetails.getUsername() : null;
     }
 

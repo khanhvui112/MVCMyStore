@@ -45,8 +45,11 @@ public class JwtFilter extends GenericFilterBean {
         Cookie accessToken = getAccessCookie(cookies);
 
         String userName = null;
+
         if (Objects.nonNull(accessToken)) {
+
             JWSObject jWSObject = JwtUtil.decodeToken(accessToken.getValue());
+
             if (Objects.nonNull(jWSObject)) {
                 Map<String, Object> payload = jWSObject.getPayload().toJSONObject();
                 userName =  payload.get("userName").toString();

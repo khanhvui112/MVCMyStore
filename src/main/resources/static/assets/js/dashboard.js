@@ -125,9 +125,11 @@ function drawEmployee(page) {
 async function getDataSelect(url) {
     const response = await fetch(url);
     return await response.json();
+
 }
 
 function getDataForm() {
+
     let data = new FormData();
     let image = $("input[name='imageLink']")[0].files[0];
     data.append('image_Link', image);
@@ -141,6 +143,7 @@ function getDataForm() {
     data.append("ma_id", $("#manufacturer").val());
     data.append("product_detail_id", $("#product_detail_id").val());
     return data;
+
 }
 
 async function getCategory() {
@@ -306,7 +309,6 @@ function bindingDataEmployee(data) {
                </td>
             </tr>`
         );
-
     });
 
 

@@ -6,10 +6,10 @@
 spring:
 
   datasource:
-    url: jdbc:sqlserver://localhost:1433;database=MYSTOREMVC
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: sa
-    password: 23102000
+    url: jdbc:mysql://doadmin:noU2BBZ3brDi693Y@db-mysql-mystore-mvc-do-user-11063305-0.b.db.ondigitalocean.com:25060/MYSTOREMVC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: doadmin
+    password: noU2BBZ3brDi693Y
 
   jpa:
     show-sql: true
@@ -29,6 +29,12 @@ spring:
 
 server:
   port: 9999
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:mystore.p12
+    key-store-password: vUi@23102000a
+    key-alias: mystore
+    enabled: true
 
 app:
   file:
@@ -48,7 +54,7 @@ app:
   mail:
     sender-name: MyStore_Server
     sender-email: sankhanh12@gmail.com
-    password: "gaqzljtpxdxelxws"
+    password: "0985574580"
 
   key:
     encrypt: Vui@23102000

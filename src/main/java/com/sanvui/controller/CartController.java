@@ -64,6 +64,6 @@ public class CartController {
 /*        cookie.setMaxAge(60 * 60 * 7 * 24);*/
         response.addCookie(cookie);
 
-        return new ResponseEntity<String>(String.valueOf(quantity), HttpStatus.OK);
+        return new ResponseEntity<>(String.valueOf(quantity), HttpStatus.OK);
     }
 }

@@ -10,6 +10,7 @@ import com.sanvui.model.entity.Employee;
  */
 
 public class MailParamDtoUtil {
+
     public static MailParamDto mailParamDto(Employee employee, int time, String url) {
         return MailParamDto.builder()
                 .mailTo(new String[]{employee.getEmail()})

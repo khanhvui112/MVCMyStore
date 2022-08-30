@@ -1,18 +1,10 @@
 package com.sanvui.repository.custom.impl;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
-import com.sanvui.model.dto.resp.ImagesResponseDto;
 import com.sanvui.model.dto.resp.ProductResponseDto;
-import com.sanvui.model.entity.Images;
-import com.sanvui.model.entity.Products;
-import com.sanvui.repository.ImagesRepository;
 import com.sanvui.repository.custom.CustomizeProductRepository;
-import com.sanvui.service.imp.ImagesServiceImpl;
 import com.sanvui.utils.FileUtils;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.hibernate.query.NativeQuery;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -20,11 +12,7 @@ import org.springframework.data.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

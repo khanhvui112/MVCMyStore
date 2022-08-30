@@ -68,6 +68,7 @@ public class EmployeeServices {
     }*/
 
     public MessageValidator insert(Employee employee) {
+
         boolean username = generateCheck(employee, "username");
         boolean email = generateCheck(employee, "email");
         boolean phone = generateCheck(employee, "phone");
