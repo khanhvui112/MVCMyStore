@@ -1,8 +1,14 @@
+#cation-dev.ymllogging:
+#  level:
+#    org:
+#      hibernate:
+#        type: trace
 spring:
+
   datasource:
-    url: jdbc:sqlserver://localhost:1433;database=MYSTOREMVC
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: sa
+    url: jdbc:mysql://database-1.cj9jevvm0qi0.us-east-1.rds.amazonaws.com:3306/MYMVCSTORE
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
     password: 23102000
 
   jpa:
@@ -10,5 +16,54 @@ spring:
     hibernate:
       ddl-auto: update
 
+
+    open-in-view: false
+    properties:
+      hibernate.search:
+        lucene_version: latest
+    database: mysql
+  data:
+    cassandra:
+      request:
+        throttler:
+          type:
+
 server:
-  port: 8888
+  port: 8080
+app:
+  file:
+    location: D:/Spring MVC/SpringMVCMyStore2/assest/
+    product: ${app.file.location}/product
+    url-prefix: http://localhost:${server.port}/file
+  url-local:
+    url: http://localhost:${server.port}
+  page:
+    size: 4
+    products:
+      size: 20
+      size10: 10
+    employees:
+      size: 10
+
+  mail:
+    sender-name: MyStore_Server
+    sender-email: sankhanh12@gmail.com
+    password: "gaqzljtpxdxelxws"
+
+  key:
+    encrypt: Vui@23102000
+
+  token:
+    time: 5
+
+logging:
+  level:
+    org:
+      hibernate:
+        type :
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        SQL: DEBUG
+
+
