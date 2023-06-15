@@ -24,6 +24,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.awt.*;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,8 +80,13 @@ public class CustomizeProductRepositoryImpl implements CustomizeProductRepositor
 
         queryCount = queryCount.replace("#whereClause",where);
 
-        Integer totalPages = (Integer) entityManager.createNativeQuery(queryCount).getSingleResult();
-
+        Integer totalPages = 0;
+        try {
+            BigInteger s = (BigInteger) entityManager.createNativeQuery(queryCount).getSingleResult();
+            totalPages = s.intValue();
+        }catch (Exception e){
+            System.out.println(e);
+        }
 
         String sort = "order by ";
 
@@ -101,7 +107,8 @@ public class CustomizeProductRepositoryImpl implements CustomizeProductRepositor
 
         objectMap.put("itemPage", pageable.getPageSize());
 
-        List productRespDtos = entityManager.createNativeQuery(query
+        List productRespDtos = entityManager
+                .createNativeQuery(query
                 , "productCustomResultMapping")
                 .unwrap(NativeQuery.class)
                 .setProperties(objectMap).getResultList();

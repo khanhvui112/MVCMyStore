@@ -17,4 +17,5 @@ ON p.product_id = ps.product_id
 ON p.product_specification_id = psf.product_specification_id*/
 #whereClause
 #orderByClause
-offset :startItem rows fetch next :itemPage rows only
+-- offset :startItem rows fetch next :itemPage rows only
+LIMIT :itemPage OFFSET :startItem;
