@@ -16,7 +16,7 @@ server:
 
 app:
   file:
-    location: D:/Spring MVC/SpringMVCMyStore2/assest/
+    location: /SpringMVCMyStore2/assest/
     product: ${app.file.location}/product
     url-prefix: http://${server.ip}:${server.port}/file
   url-local:
