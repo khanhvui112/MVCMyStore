@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://20.205.139.236:3306/store
+    url: jdbc:mysql://20.205.139.236:3306/store-test
     username: admin
     password: Vui@231020
 
