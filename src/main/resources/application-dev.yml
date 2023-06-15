@@ -1,14 +1,53 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://localhost:1433;database=MYSTOREMVC
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: sa
-    password: 23102000
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://20.205.139.236:3306/store
+    username: admin
+    password: Vui@231020
 
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
 server:
-  port: 8888
+  port: 8088
+  ip: 20.205.139.236
+
+app:
+  file:
+    location: D:/Spring MVC/SpringMVCMyStore2/assest/
+    product: ${app.file.location}/product
+    url-prefix: http://${server.ip}:${server.port}/file
+  url-local:
+    url: http://${server.ip}:${server.port}
+  page:
+    size: 4
+    products:
+      size: 20
+      size10: 10
+    employees:
+      size: 10
+
+  mail:
+    sender-name: MyStore_Server
+    sender-email: sankhanh12@gmail.com
+    password: "0985574580"
+
+  key:
+    encrypt: Vui@23102000
+
+  token:
+    time: 5
+
+logging:
+  level:
+    org:
+      hibernate:
+        type :
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        SQL: DEBUG
+
+
