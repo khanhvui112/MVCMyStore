@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 
 function getProduct() {
-    const url = '/api/v1/products'
+    const url = 'api/v1/products'
     fetch(url)
         .then((resp) => resp.json())
         .then(function (data) {

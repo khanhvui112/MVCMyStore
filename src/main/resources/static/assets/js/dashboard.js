@@ -48,7 +48,7 @@ $(document).ready(function () {
             processData: false, // tell jQuery not to process the data
             contentType: false, // tell jQuery not to set contentType
             cache: false,
-            url: '/api/v1/products',
+            url: 'api/v1/products',
             data: products,
             success: function (data) {
 
@@ -98,7 +98,7 @@ function Pagination(totalPage) {
 }
 
 function drawEmployee(page) {
-    const url = '/admin/api-employee/find-all?page=' + page;
+    const url = '/adminapi-employee/find-all?page=' + page;
     $.ajax({
         url: url,
         type: 'GET',
@@ -144,7 +144,7 @@ function getDataForm() {
 }
 
 async function getCategory() {
-    const url = '/api/v1/categorys';
+    const url = 'api/v1/categorys';
     const response = await fetch(url);
     return await response.json();
 }
@@ -212,7 +212,7 @@ function createProduct() {
                 <select class="custom-select d-block w-100 color-select" name="color_id" id="color" required="">
                   <option value="">Chọn...</option>
                   ` +
-        getDataSelect('/api/v1/colors').then(c => {
+        getDataSelect('api/v1/colors').then(c => {
             c.data.forEach(function (d) {
                 $(".color-select").append(`<option value="${d.colorId}">${d.colorName}</option>`)
             })
@@ -224,7 +224,7 @@ function createProduct() {
                 <label for="state">Nhà sản xuất</label>
                 <select class="custom-select d-block w-100 manufacturer-select" name="ma_id" id="manufacturer" required="">
                   <option value="">Chọn...</option>` +
-        getDataSelect('/api/v1/manufacturers').then(c => {
+        getDataSelect('api/v1/manufacturers').then(c => {
             c.data.forEach(function (d) {
                 $(".manufacturer-select").append(`<option value="${d.maId}">${d.maName}</option>`)
             })
@@ -240,7 +240,7 @@ function createProduct() {
                 <select class="custom-select d-block w-100 product-detail-select" id="product_detail_id" name="product_detail_id" required="">
                   <option value="">Chọn...</option>
                  ` +
-        getDataSelect('/api/v1/product-details').then(c => {
+        getDataSelect('api/v1/product-details').then(c => {
             c.data.forEach(function (d) {
                 $(".product-detail-select")
                     .append(`

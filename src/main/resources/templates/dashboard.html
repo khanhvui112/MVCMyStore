@@ -33,8 +33,8 @@
 
 
         <!-- Custom Theme Style -->
-        <link href="/assets/css/custom.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/assets/css/dasboard.css">
+        <link href="assets/css/custom.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/dasboard.css">
     </head>
     <body style="background: unset;" class="nav-md">
         <div class="container body">
@@ -54,7 +54,7 @@
                             <th:if test="${loginDTO.getAvatar() != 'null' }">
                                 <div class="profile_pic">
                                     <img style="height: 8%;width: 77%;"
-                                         src="/assets/images/avatar/${loginDTO.getAvatar()}"
+                                         src="assets/images/avatar/${loginDTO.getAvatar()}"
                                          alt="..." class="img-circle profile_img">
                                 </div>
                             </th:if>
@@ -194,7 +194,7 @@
                                     <p class="user-profile dropdown-toggle" aria-haspopup="true" th:text="${session.userName}" id="navbarDropdown"
                                        data-toggle="dropdown" aria-expanded="false">
                                         <c:if test="${loginDTO.getAvatar() != 'null' }">
-                                            <img src="${pageContext.request.contextPath}/views/assets/images/avatar/${loginDTO.getAvatar()}"
+                                            <img src="${pageContext.request.contextPath}/viewsassets/images/avatar/${loginDTO.getAvatar()}"
                                                  alt="">
                                         </c:if>
 
@@ -362,7 +362,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <!-- Custom Theme Scripts -->
-        <script src="/assets/js/dashboard.js"></script>
+        <script src="assets/js/dashboard.js"></script>
 
     </body>
 </html>

@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 
 function loadFooter() {
-    const url = '/api/v1/footers'
+    const url = 'api/v1/footers'
     fetch(url)
         .then((resp) => resp.json()) // Transform the data into json
         .then(function (data) {

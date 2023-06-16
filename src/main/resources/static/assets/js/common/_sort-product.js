@@ -200,7 +200,7 @@ function loadCategory() {
         saveUrl = saveUrl.replaceAll(replace,"");
     }
 
-    getDataAsy('/api/v1/categorys').then(c => {
+    getDataAsy('api/v1/categorys').then(c => {
         c.data.forEach(function (cate) {
 
             if ((cate.caId === Number(titleCategory))) {
@@ -282,7 +282,7 @@ function loadManufacturer() {
         saveUrl = saveUrl.replaceAll(replace,"");
     }
 
-    getDataAsy('/api/v1/manufacturers').then(c => {
+    getDataAsy('api/v1/manufacturers').then(c => {
         c.data.forEach(function (ma) {
 
             if ((ma.maId === Number(titleManufacturer))) {

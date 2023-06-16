@@ -51,7 +51,7 @@ function drawProductSearch(data) {
 }
 
 function searchHeader(text_search) {
-    const url = '/api/v1/products/search?name=' + text_search;
+    const url = 'api/v1/products/search?name=' + text_search;
     $.ajax({
         type: 'get',
         url: url

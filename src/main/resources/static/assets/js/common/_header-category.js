@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 function getCategory() {
-    const url = '/api/v1/categorys'
+    const url = 'api/v1/categorys'
 
 
 

@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 
 function loadMenu() {
-    const url = '/api/v1/menus'
+    const url = 'api/v1/menus'
     fetch(url)
         .then((resp) => resp.json()) // Transform the data into json
         .then(function (data) {
