@@ -14,7 +14,7 @@ server:
   port: 8088
   ip: 20.205.139.236
   servlet:
-    context-path: /store
+    context-path: /
 
 app:
   file:
