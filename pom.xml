@@ -9,9 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sanvui</groupId>
-	<artifactId>SpringMVCMyStore2</artifactId>
+	<artifactId>spring_app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SpringMVCMyStore2</name>
+	<name>spring_app</name>
+	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>8</java.version>
